@@ -1,0 +1,12 @@
+span.focus{
+
+background:#FFF8E2 none repeat scroll 0 0;
+border-bottom:2px solid #E3D922;
+}
+
+span.blank{
+background:#FFFFD1 none repeat scroll 0 0;
+border:1px solid #E2C922;
+font-weight:bold;
+margin:0 5px;
+}

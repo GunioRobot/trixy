@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Trixy - Fancybox iframe</title>
+<link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/fancy.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/countdown.css"/>
+
+
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.js"></script>
+
+
+<script type="text/javascript" src="/static/scripts/jquery.fancybox.js"></script> 
+
+
+<script type="text/javascript" src="/static/scripts/jquery.pngFix.js"></script> 
+<script type="text/javascript" src="/static/scripts/jquery.metadata.js"></script> 
+<script src="/static/scripts/jqModal.js" type="text/javascript"></script>
+
+ 
+
+<script type="text/javascript">
+
+    function timeleft(timetype){
+        days=0;hours=0;mins=0;
+        var e = new Date(2008,11,25,0,0,0);
+        var now  = new Date();
+        var left = e.getTime() - now.getTime();
+
+        left = Math.floor(left/1000);
+  days = Math.floor(left/86400);
+  left = left%86400;
+  hours=Math.floor(left/3600);
+  left=left%3600;
+  mins=Math.floor(left/22);
+  left=left%60;
+  secs=Math.floor(left);
+
+        switch(timetype){
+            case "s":
+                return secs;
+                break;
+            case "m":
+                return mins;
+                break;
+            case "h":
+                return hours;
+                break;
+            case "d":
+                return days;
+                break;
+        }
+    }
+
+
+    function set_start_count(){
+
+        set_minute_count();
+
+    }
+
+    function set_minute_count(){
+        m = timeleft('m');
+        $('#minutes-count').text(m.toString()+ ' minute(s)');
+    }
+
+
+    function update_minute(){
+        var now = new Date();
+        var mw = $('#minutes-outer').css('width');
+        mw = mw.slice(0,-2);
+        var s = now.getSeconds(); 
+        sleft = (60 - s)
+        if (sleft == 0)
+        {
+            sleft=60;
+        }
+        m = ((sleft/60)*mw).toFixed();
+        $('#minutes-inner').css({width:m});
+        return sleft*1000;
+    }
+
+
+
+
+
+
+    function reset_minute(){
+        $('#minutes-inner').width($('#minutes-outer').width());
+        start_countdown_minute();
+    }
+
+
+    
+        function start_countdown_minute(){
+        set_minute_count();
+        $('#minutes-inner').animate({width: 0}, update_minute(),reset_minute);
+        //update_minute());
+    }
+
+
+
+    
+
+
+</script>
+
+
+
+
+
+{% block head %}{% endblock head %}
+
+     <script type="text/javascript">
+     
+        $(document).ready(function() {
+            
+            
+            start_countdown_minute();
+
+        $("p#test2 a").fancybox({ 'hideOnContentClick': true });
+         $("p#trixy a").fancybox({ 'zoomSpeedIn': 400, 'zoomSpeedOut': 400, 'overlayShow': true, 'itemLoadCallback': getGroupItems }); 
+         }); 
+         
+			
+		var urlList = [
+			{url: "/", answer1: "Form Item  1", answer2: "Form Item 2", answer3: "Form Item 3", title: "item1" },
+			{url: "http://www.google.com/", answer1: "Form Item  1", answer2: "Form Item 2", answer3: "Form Item 3", title: "item1" },
+			{url: "http://www.cuil.com/", title: "Cuil"},
+			{url: "http://www.live.com/", title: "Live"}
+			
+		];
+		
+		function getGroupItems(opts) {
+			jQuery.each(urlList, function(i, val) {
+		        opts.itemArray.push(val);
+		    });
+		}
+
+
+        </script>
+
+
+
+
+</head>
+
+
+
+<body>
+
+
+
+
+<p id="trixy">
+<a href="javascript:;" title="google!">
+<img src="http://fancy.klade.lv/img/examples/16_s.jpg" alt=""/>
+</a>
+</p>
+
+    <div id="minutes-box"><div id="minutes-count"> </div><div id="minutes-outer"> <div id="minutes-inner"> </div> </div></div>
+
+   
+
+
+
+
+
+</body>
+</html>

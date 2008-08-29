@@ -1,0 +1,79 @@
+
+
+
+
+
+
+
+{% block main %}
+
+
+
+
+
+
+{% ifequal totalitems 0 %}
+
+<h2> You don't have any points. <br/><br/><div class="bluebackground"><a href="/">Start scoring some.</a></div> </h2>
+
+{% else %}
+
+
+
+<img src="http://chart.apis.google.com/chart?chs=540x285&cht=gom&chd=t:{{ percentage }}&chl={{ percentage }}%%20Correct|%20Answers">
+
+
+
+
+<h2 style="font-size:2em;">Your  highscore: <span style="font-size:2em;">{% for score in highscore %}{{score.highscore}}{% endfor %}</span></h2><h2>You've gotten {{ totalscore }} out of {{ totalitems }} answers correct
+</h2>
+
+
+{% for grade in scores %}<div class="answer">
+
+
+<blockquote>
+
+You
+{% ifequal grade.score "incorrect" %}
+
+<span class="incorrect">
+{{ grade.score|escape }}ly
+</span>
+{% else %}
+<span class="correct">
+{{ grade.score|escape }}ly
+</span>
+{% endifequal %}
+
+chose
+
+
+
+</blockquote>
+
+<div>
+<a class="round"><span><h5>{{ grade.picked_answer|escape }}</h5></span></a>
+</div>
+
+{% ifequal grade.score "incorrect" %}
+
+<blockquote>  instead of  </blockquote>
+
+<div>
+<a class="round"><span><h5>{{ grade.real_answer|escape }}</h5></span></a>
+</div>
+
+{% endifequal %}
+
+</div>{% endfor %}
+
+
+
+{% endifequal %} 
+
+
+
+
+
+{% endblock main %}

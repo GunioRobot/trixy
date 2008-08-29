@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+<head>
+<title>Trixy - jqModal iframe</title>
+<link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/pqModal.css"/>
+        <style type="text/css">
+            .jqmWindow {
+                background: #FFFFFF url(main_background.gif) left top repeat-x;
+                color: #000;
+                border: 1px solid #EAEAEB;
+                padding: 0 0px 37px;
+            }
+            
+            button.jqmClose {
+                background: #DDD;
+                border: 0px solid #EAEAEB;
+                color: #111;
+                clear: right;
+                float: right;
+                padding: 0 5px;
+                cursor: pointer;
+                font-size: 8px;
+                height: 15px;
+                letter-spacing: 1px;
+            }
+            
+            button.jqmClose:hover, button.jqmClose:focus {
+                background: #FFF;
+                color: #000;
+				border: 0px solid #FFF;
+            }
+			     
+            #jqmTitle {
+                background: transparent;
+                color: black;
+                text-transform: uppercase;
+                height: 15px;
+                padding: 5px;
+            }
+            
+            #jqmContent {
+                width: 99%;
+                height: 99%;
+                display: block;
+                clear: both;
+                margin: auto;
+                margin-top: 10px;
+                background: #FFF;
+                border: 1px solid #EAEAEB;
+            }
+        </style>
+
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.js"></script>
+<script src="/static/scripts/jqModal.js" type="text/javascript"></script>
+
+
+{% block head %}{% endblock head %}
+
+     <script type="text/javascript">
+     
+            $(document).ready(function(){
+                // onHide : fade the window out, remove overlay after fade.
+                var myClose = function(hash){
+                    hash.w.fadeOut('3000', function(){
+                        hash.o.remove();
+                    });
+                };
+                var openInIframe = function(hash){
+                    var newWidth = 0, newHeight = 0, newLeft = 0, newTop = 0;
+                    var $trigger = $(hash.t);
+                    var $modal = $(hash.w);
+                    var myUrl = $trigger.attr('href');
+                    var myTitle = $trigger.attr('title');
+                    var $modalContent = $("iframe", $modal);
+                    
+                    $modalContent.html('').attr('src', myUrl);
+                    //let's use the anchor "title" attribute as modal window title
+                    $('#jqmTitleText').text(myTitle);
+                    
+                    myUrl = (myUrl.lastIndexOf("#") > -1) ? myUrl.slice(0, myUrl.lastIndexOf("#")) : myUrl;
+                    var queryString = (myUrl.indexOf("?") > -1) ? myUrl.substr(myUrl.indexOf("?") + 1) : null;
+                    
+                    if (queryString != null && typeof queryString != 'undefined') {
+                        var queryVarsArray = queryString.split("&");
+                        for (var i = 0; i < queryVarsArray.length; i++) {
+                            if (unescape(queryVarsArray[i].split("=")[0]) == 'width') {
+                                var newWidth = queryVarsArray[i].split("=")[1];
+                            }
+                            if (escape(unescape(queryVarsArray[i].split("=")[0])) == 'height') {
+                                var newHeight = queryVarsArray[i].split("=")[1];
+                            }
+                        }
+                        // let's run through all possible values: 90%, nothing or a value in pixel
+                        if (newHeight != 0) {
+                            if (newHeight.indexOf('%') > -1) {
+                                newHeight = Math.floor(parseInt($(window).height()) * (parseInt(newHeight) / 100));
+                            }
+                            var newTop = Math.floor(parseInt($(window).height() - newHeight) / 2);
+                        }
+                        else {
+                            newHeight = $modal.height();
+                        }
+                        if (newWidth != 0) {
+                            if (newWidth.indexOf('%') > -1) {
+                                newWidth = Math.floor(parseInt($(window).width() / 100) * parseInt(newWidth));
+                            }
+                            var newLeft = Math.floor(parseInt($(window).width() / 2) - parseInt(newWidth) / 2);
+                            
+                        }
+                        else {
+                            newWidth = $modal.width();
+                        }
+                        // do the animation so that the windows stays on center of screen despite resizing
+                        $modal.css({width:0, height:0}).jqmShow().animate({
+                            width: newWidth,
+                            height: newHeight,
+                            top: newTop,
+                            left: newLeft,
+                            marginLeft: 0
+                        }, 2000);
+                    }
+                    
+                    else {
+                        // don't do animations
+                        $modal.jqmShow();
+                    }
+                }
+                
+                //thickbox replacement
+                $('#modalWindow').jqm({
+                    modal: true,
+                    trigger: 'a.thickbox',
+                    target: '#jqmContent',
+                    onHide: myClose,
+                    onShow: openInIframe
+                });
+                
+            })
+        </script>
+
+
+
+
+</head>
+
+<body>
+
+
+<a href="http://www.google.com/search?q=jqmodal&width=50%&height=50%" class="thickbox" title="trixy loves you">google</a>
+
+
+
+   
+   
+
+
+
+
+ </div>
+    <div id="modalWindow" class="jqmWindow">
+        <div id="jqmTitle">
+            <button class="jqmClose">
+                Close X
+            </button>
+
+            <span id="jqmTitleText">Title of modal window</span>
+        </div>
+        <iframe id="jqmContent" src="blank.html">
+        </iframe>
+        whaaatup
+    </div>
+
+</body>
+</html>
