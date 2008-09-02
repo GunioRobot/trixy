@@ -100,14 +100,10 @@ class PQIntro(webapp.RequestHandler):
 
   def get(self):
 
-    template_values = {
-
-
-                                                    
-      }
-     
-      
-    path = tpl_path('intro.html')
+    template_values = {}
+    
+    intro_template = self.request.get('page') + ".html"
+    path = tpl_path(intro_template)
     self.response.out.write(template.render(path, template_values))
 
 

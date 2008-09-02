@@ -205,6 +205,30 @@ var itemOpts = {
     'height':	359 + 'px'	
 };
 
+}else if (opts.itemArray[opts.itemNum].item_type == "instructions"){
+    
+     /* instructions */
+    
+    
+var itemOpts = {
+    'left':		143 + 'px', 
+    'top':		0 + 'px', 
+    'width':	332 + 'px', 
+    'height':	359 + 'px'	
+};
+
+}else if (opts.itemArray[opts.itemNum].item_type == "instructions2"){
+    
+     /* instructions */
+    
+    
+var itemOpts = {
+    'left':		143 + 'px', 
+    'top':		0 + 'px', 
+    'width':	332 + 'px', 
+    'height':	369 + 'px'	
+};
+
 
 }else{   
     
@@ -274,9 +298,12 @@ $("#quiz_bg,#quiz_close").show();
  
     if (opts.itemArray[opts.itemNum].item_type == "quiz_item") {
         $('#quiz_title').show();
-    $('#quiz_title div#quiz_answers').show();   
-        
+    $('#quiz_title div#quiz_answers').show();           
 $('#quiz_title div#quiz_intro').hide();  
+$('#quiz_title div#quiz_instructions').hide();
+$('#quiz_title div#quiz_instructions2').hide(); 
+
+/* TODO change to toggle */
   
 ;        
         
@@ -284,7 +311,7 @@ $('#quiz_title div#quiz_intro').hide();
     $('#quiz_answers div#answer2').empty();
     $('#quiz_answers div#answer3').empty();
     
-    $('#quiz_answers div#answer1').html(opts.itemArray[opts.itemNum].answer1);      /*(opts.itemArray[opts.itemNum].title);*/
+    $('#quiz_answers div#answer1').html(opts.itemArray[opts.itemNum].answer1);     
     $('#quiz_answers div#answer2').html(opts.itemArray[opts.itemNum].answer2);
     $('#quiz_answers div#answer3').html(opts.itemArray[opts.itemNum].answer3);
 
@@ -297,19 +324,46 @@ $('#quiz_title div#quiz_intro').hide();
     
 $('#quiz_title').show();
 $('#quiz_title div#quiz_intro').show();  
-$('#quiz_title div#quiz_answers').hide();     
+$('#quiz_title div#quiz_answers').hide(); 
+$('#quiz_title div#quiz_instructions').hide();
+$('#quiz_title div#quiz_instructions2').hide();     
 
 
 
-$('#quiz_intro div#take_quiz').html("Take This Quiz");  
+$('#quiz_intro div#take_quiz').html(opts.itemArray[opts.itemNum].take_quiz);  
    
 $('#quiz_intro div#choose_quiz').html(opts.itemArray[opts.itemNum].choose_quiz);
 
 $('#take_quiz').click(function(){ $.fn.quizbox.changeItem(opts.itemNum + 1); return false; });
-$('#choose_quiz').click(function(){ $.fn.quizbox.changeItem(opts.itemNum + 1); return false; console.log('todo'); });
+$('#choose_quiz').click(function(){ console.log('TODO: Choose other quizzes'); return false;  });
 
 
-   
+   }else if (opts.itemArray[opts.itemNum].item_type == "instructions") {
+ 
+ 
+$('#quiz_title').show();
+$('#quiz_title div#quiz_instructions').show();  
+$('#quiz_title div#quiz_answers').hide();   
+$('#quiz_title div#quiz_intro').hide();
+$('#quiz_title div#quiz_instructions2').hide();    
+
+    $('#quiz_instructions div#answer1').html(opts.itemArray[opts.itemNum].answer1);     
+    $('#quiz_instructions div#answer2').html(opts.itemArray[opts.itemNum].answer2);
+
+    }else if (opts.itemArray[opts.itemNum].item_type == "instructions2") {
+ 
+ 
+$('#quiz_title').show();
+$('#quiz_title div#quiz_instructions2').show();  
+$('#quiz_title div#quiz_instructions').hide();
+$('#quiz_title div#quiz_answers').hide();   
+$('#quiz_title div#quiz_intro').hide();   
+
+    $('#quiz_instructions2 div#answer1').html(opts.itemArray[opts.itemNum].answer1);     
+    $('#quiz_instructions2 div#answer2').html(opts.itemArray[opts.itemNum].answer2);
+
+ 
+ 
  
 }else{
 $('#quiz_title').hide();
@@ -418,17 +472,29 @@ if (!$('#quiz_wrap').length) {
     $('<div id="quiz_wrap"><div id="quiz_loading"><div></div></div><div id="quiz_outer"><div id="quiz_inner"><div id="quiz_nav"></div><div id="quiz_close"></div><div id="quiz_content"></div><div id="quiz_title"></div></div><div id="minutes-boxNOTYET"><div id="minutes-countNOTYET"> </div><div id="minutes-outerNOTYET"> <div id="minutes-innerNOTYET"> </div> </div></div></div></div>').appendTo("body");
     $('<div id="quiz_bg"><div class="quiz_bg quiz_bg_n"></div><div class="quiz_bg quiz_bg_ne"></div><div class="quiz_bg quiz_bg_e"></div><div class="quiz_bg quiz_bg_se"></div><div class="quiz_bg quiz_bg_s"></div><div class="quiz_bg quiz_bg_sw"></div><div class="quiz_bg quiz_bg_w"></div><div class="quiz_bg quiz_bg_nw"></div></div>').prependTo("#quiz_inner");
       /* append timer to iframe */
-    $('<div class="timer_wrapper"><!--timer TODO --></div>').appendTo('#quiz_title');
+    
 
 
    /* append intro items to iframe */
- $('<div id="quiz_intro"></div>').appendTo('#quiz_title');
-$('<a id="take_quiz" onmouseover="" class="answer" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" id="take_quiz"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_intro');
-$('<a id="choose_quiz" class="answer" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" id="choose_quiz"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_intro');
+ $('<div id="quiz_intro" style="display:none;"></div>').appendTo('#quiz_title');
+$('<a id="take_quiz" onmouseover="" style="margin-left:25px;" class="answer" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="answertext" id="take_quiz" style="width: 90px; font-size:20px;"></div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_intro');
+$('<a id="choose_quiz" class="answer" style="font-size:13px; margin-left:30px;" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main" style="width:45px;"><div class="answertext" style="margin: 3px 0pt 0pt 1px; font-size: 13px; width: 36px; line-height: 1.1em;" id="choose_quiz"></div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_intro');
+
+   /* append instruction items to iframe */
+ $('<div id="quiz_instructions" style="display:none;"></div>').appendTo('#quiz_title');
+    $('<a id="answer1" onmouseover="" class="answer" style="margin-left:20px;" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" style="margin-left:7px;" id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions');
+     $('<a id="answer2" class="answer" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" style="margin-left:9px;" id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions');
+   
+ $('<div id="quiz_instructions2" style="display:none; margin-top:11px"></div>').appendTo('#quiz_title');
+    $('<a id="answer1" onmouseover="" class="answer"  href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
+    $('<a id="answer2" class="answer" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
+    $('<a id="skip" class="answer" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow"><img src="/static/stylesheets/img/pinkarrow.png" /></div><div class="skipitem" id="skiptext">Skip</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
+     
 
     
     /* append quiz items to iframe */
      $('<div id="quiz_answers"></div>').appendTo('#quiz_title');
+     $('<div class="timer_wrapper"><!--timer TODO --></div>').appendTo('#quiz_answers');
      
     $('<a id="answer1" onmouseover="" class="answer" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_answers');
      $('<a id="answer2" class="answer" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_answers');
@@ -479,8 +545,8 @@ switch(timetype){
 }
 }
 
-
 function set_start_count(){
+
 
 set_minute_count();
 
@@ -514,7 +580,6 @@ start_countdown_minute();
 }
 
 
-
 function start_countdown_minute(){
 set_minute_count();
 $('#minutes-inner').animate({width: 0}, update_minute(),reset_minute);
@@ -524,15 +589,17 @@ $('#minutes-inner').animate({width: 0}, update_minute(),reset_minute);
      
      
      /* submit answers and proceed to next question */
-     
-        $('#answer1').click(function(){ submit_answer('#answer1'); });
-        $('#answer2').click(function(){ submit_answer('#answer2'); });
-        $('#answer3').click(function(){ submit_answer('#answer3'); });
-        $('#skip').click(function(){ submit_answer('#skip'); });
+        $('a').find('#skip').click(function(){ submit_answer('#skip'); });
+        $('a').find('#answer1').click(function(){ submit_answer('#answer1'); });
+        $('a').find('#answer2').click(function(){ submit_answer('#answer2'); });
+        $('a').find('#answer3').click(function(){ submit_answer('#answer3'); });
+        
 
     
     
 function submit_answer(answer){
+
+console.log('submitting item');
 
 if (answer == "#skip") {
 var answer_text = "skip_item";
