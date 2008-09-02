@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<title>Snaptalent Job - Get a Phone Interview With Plopquiz.</title>
+<link rel="stylesheet" href="/static/stylesheets/publish.css" type="text/css" media="screen" charset="utf-8">
+<link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quiz.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/countdown.css"/>
+
+<script type="text/javascript" src="/static/scripts/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/static/scripts/json2min.js"></script>
+<script type="text/javascript" src="/static/scripts/quizbox.js"></script> 
+<script type="text/javascript" src="/static/scripts/publish.js"></script> 
+<script type="text/javascript" src="/static/scripts/jquery.pngFix.js"></script> 
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+/* start_countdown_minute(); - Countdown TODO */
+
+
+
+/*  Load quiz item iframes - static/scripts/quizbox.js redundant */
+
+
+
+$("p#apply a").quizbox({ 'zoomSpeedIn': 400, 'zoomSpeedOut': 400, 'overlayShow': true, 'overlayOpacity': 0.3, 'itemLoadCallback': getGroupItems }); 
+
+$("span#apply_button a").quizbox({ 'zoomSpeedIn': 400, 'zoomSpeedOut': 400, 'overlayShow': true, 'overlayOpacity': 0.3,
+'itemLoadCallback': getGroupItems }); 
+
+$("span#apply_button_d a").quizbox({ 'zoomSpeedIn': 400, 'zoomSpeedOut': 400, 'overlayShow': true, 'overlayOpacity': 0.3,
+'itemLoadCallback': getGroupItems }); 
+
+});
+
+
+
+
+var quizitemList = [
+
+{url: "/static/html/items/python.html", item_type:"quiz_item", answer1: "Attribute", answer2: "Class", answer3: "Method", index: "Class"},
+{url: "/static/html/items/biochem.html", item_type:"quiz_item", answer1: "Organotrophs", answer2: "Autotrophs", answer3: "Heterotrophs", index: "Heterotrophs" },
+{url: "/static/html/items/bayesian.html", item_type:"quiz_item", answer1: "Clique Tree", answer2: "Variational Method", answer3: "Gaussian Distribution", index: "Clique Tree" },
+{url: "/viewscore/", item_type:"score", answer1: "Send Score to Plopquiz, Inc.", answer2: "Don't Send Score" }
+];
+
+function getGroupItems(opts) {
+jQuery.each(quizitemList, function(i, val) {
+opts.itemArray.push(val);
+});
+}
+
+
+
+
+
+/*  Ajax Answer Submission */
+
+function Request(function_name, opt_argv) {
+
+if (!opt_argv)
+opt_argv = new Array();
+
+// Find if the last arg is a callback function; save it
+var callback = null;
+var len = opt_argv.length;
+if (len > 0 && typeof opt_argv[len-1] == 'function') {
+callback = opt_argv[len-1];
+opt_argv.length--;
+}
+var async = (callback != null);
+
+// Encode the arguments in to a URI
+var query = 'action=' + encodeURIComponent(function_name);
+for (var i = 0; i < opt_argv.length; i++) {
+var key = 'arg' + i;
+var val = JSON.stringify(opt_argv[i]);
+query += '&' + key + '=' + encodeURIComponent(val);
+}
+query += '&time=' + new Date().getTime(); // IE cache workaround
+
+// Create an XMLHttpRequest 'GET' request w/ an optional callback handler 
+var req = new XMLHttpRequest();
+req.open('GET', '/rpc?' + query, async);
+
+if (async) {
+req.onreadystatechange = function() {
+if(req.readyState == 4 && req.status == 200) {
+var response = null;
+try {
+response = JSON.parse(req.responseText);
+} catch (e) {
+response = req.responseText;
+}
+callback(response);
+}
+}
+}
+
+// Make the actual request
+req.send(null);
+}
+
+// Adds a stub function that will pass the arguments to the AJAX call 
+function InstallFunction(obj, functionName) {
+obj[functionName] = function() { Request(functionName, arguments); }
+}
+
+
+// Server object that will contain the callable methods
+var server = {};
+var item_count = 0;
+
+// Insert 'Add' as the name of a callable method
+InstallFunction(server, 'Add');
+InstallFunction(server, 'Init');
+
+
+
+function doAdd(ans, co) {
+
+server.Add(ans, co, onAddSuccess);
+
+}
+
+function doInit() {
+
+server.Init();
+
+}
+
+function onAddSuccess(response) {}
+
+
+</script>
+
+
+
+</head>
+<body id="" onload="">
+
+
+<div id="content">
+<div id="sidebar"><ul id="sidebar_list"><li name="bolder">
+
+<a onclick="boldme(this)" id="tab_overview" href="#view_overview">Overview</a></li><li name="bolder"><a onclick="boldme(this)" id="tab_description" href="#view_description">Job Description</a></li><li name="bolder"><a onclick="boldme(this)" href="#view_images" id="tab_images">Images and Photos</a></li><li name="bolder">
+<p id="apply"><a id="tab_apply"  href="javascript:;" style="color:#fc1a4a !important;"><strong>Apply now!</strong></a>
+</p>
+
+
+</li><li><a href="http://www.addthis.com/bookmark.php" onclick="addthis_url='http://snaptalent.com/ads/234/'; addthis_title=document.title; return addthis_click(this);" target="_blank">Bookmark<img src="http://s9.addthis.com/button1-bm.gif" width="125" height="16" border="0" alt="Bookmark and Share" class="none"/></a><script type="text/javascript">var addthis_pub = 'snaptalent';</script><script type="text/javascript" src="http://s9.addthis.com/js/widget.php?v=10"></script></li></ul></div><div id="container"><div id="view_overview" class="frame"><div class="padded"><div class="ovr_logo"><a onclick="log(2)" href="/ads/234/?c=25468" target="_blank"><img src="//media.snaptalent.com/uploaded/234/images/176_l.png" alt="" id="logo_img" /></a></div><div class="ovr_title"><a class="title" onclick="log(2)" href="/ads/234/?c=25468" target="_blank">
+
+
+Take the Co-Founder Quiz and Earn a Phone Interview.
+
+
+</a><br />
+
+at <a class="minititle">Plopquiz, Inc.</a> in <span class="minititle">San Francisco, CA </span></div><div class="ovr_text">
+
+Hiring is broken. <br/><br/>
+
+There is not enough proficiency data available for the emerging domains of knowledge that have quickly become crucial to innovation and economic growth.
+
+And without sufficient proficiency data, the job market is inefficient and wasteful, costing companies and individuals valuable time and capital.<br/><br/>
+
+Diplommas and grades and generalized standardized test scores clearly aren't cutting it. There has got to be a better way. <br/><br/>
+
+ &hellip; <a href="#view_description" onclick="boldme('tab_description')">(see more)</a></div><div class="ovr_list"><h3>Photos</h3><a href="#view_images" onclick="boldme('tab_images')">
+ <img src="http://farm2.static.flickr.com/3216/2816429545_c6ec878e03_s.jpg" class="photo" alt="" /></a></div><div class="ovr_list" style="width:300px">
+ 
+ 
+    <br /><br /></span><h3>Bookmark</h3><a href="http://www.addthis.com/bookmark.php" onclick="addthis_url='http://snaptalent.com/ads/234/'; addthis_title=document.title; return addthis_click(this);" target="_blank"><img src="//media.snaptalent.com/images/bookmarks.png" border="0" alt="Bookmark and Share" style="vertical-align:middle" /></a>
+
+</div><div class="ovr_apply"><input type="text" id="id_email2" onfocus="this.value=''" onchange="$('id_email').value=this.value;" value="enter e-mail address" style="width: 300px;" />
+<span id="apply_button">
+<a href="javascript:;" style="text-decoration:none"><input type="button" value="Apply!" style="width: 100px;" /></a>
+</span>
+</div></div></div>
+
+<div id="view_description" class="frame scroll"><div class="padded">
+
+
+
+
+<h3 class="minititle">About Plopquiz</h3>
+
+<p>Each Plopquiz contains self-generating, self-updating quiz items. Smart quizzes for smart people.</p>
+
+<p>These quizzes provide a simple way to assess and share accurate proficiency data about the emerging knowledge domains that haven't had a chance to complete (or start!) the process of being institutionalized. </p>
+
+<br/>
+<h3 class="minititle">How It Works</h3>
+
+
+<p>To generate the Co-Founder Quiz, we provided a list of keywords specifying the proficiencies we seek in a hire, such as "Django", "Statistical Analysis", "Carbon" and "Sustainability". 
+</p>
+<p>Because these proficiencies haven't been standardized, Plopquiz graphs these proficiencies, and crafts quiz items using material already published on the web. </p>
+
+<br/>
+<h3 class="minititle"  style="margin-bottom: 10px;">Take the Co-Founder Quiz</h3>
+
+
+
+<div class="ovr_apply"><input type="text" id="id_email2" onfocus="this.value=''" onchange="$('id_email').value=this.value;" value="enter e-mail address" style="width: 300px;" />
+<span id="apply_button_d">
+<a href="javascript:;" style="text-decoration:none"><input type="button" value="Apply!" style="width: 100px;" /></a>
+</span>
+</div>
+
+
+</div></div><div id="view_images" class="frame" onclick="image_next()"><div class="padded"><div class="bphoto"><img id="bphoto" class="clickable" alt="" /></div><div class="rphoto">
+<a onmouseover="image_swap(this)" name="image_link">
+<img src="http://farm2.static.flickr.com/3138/2816412463_5c4e709b24_s.jpg" class="photo" alt="" /></a>
+<a onmouseover="image_swap(this)" name="image_link"><img src="http://farm2.static.flickr.com/3184/2816412435_0d5afe948f_s.jpg" class="photo" alt="" /></a><a onmouseover="image_swap(this)" name="image_link"><img src="http://farm2.static.flickr.com/1004/1483707683_66ca6a2762_s.jpg" class="photo" alt="" />
+
+</a><a onmouseover="image_swap(this)" name="image_link">
+
+<img src="http://farm4.static.flickr.com/3216/2816429545_c6ec878e03_s.jpg" class="photo" alt="" /></a>
+<a onmouseover="image_swap(this)" name="image_link"><img src="http://farm2.static.flickr.com/1389/737977329_7273c96cc0_s.jpg" class="photo" alt="" /></a><a onmouseover="image_swap(this)" name="image_link">
+
+<img src="http://farm2.static.flickr.com/1405/737977421_9d7df52d11_s.jpg" class="photo" alt="" /></a>
+<a onmouseover="image_swap(this)" name="image_link"><img src="http://farm4.static.flickr.com/3259/2816429499_bd8a6794e8_s.jpg" class="photo" alt="" /></a><a onmouseover="image_swap(this)" name="image_link"><img src="" class="photo" alt="" /></a><a onmouseover="image_swap(this)" name="image_link"><img src="http://farm2.static.flickr.com/1181/737638233_2f4866e08d_s.jpg" class="photo" alt="" /></a><a onmouseover="image_swap(this)" name="image_link">
+<img src="http://farm4.static.flickr.com/3224/2816429581_8da06ce5a5_s.jpg" class="photo" alt="" /></a><a onmouseover="image_swap(this)" name="image_link"><img src="http://farm2.static.flickr.com/1040/737638197_9bf0d680e3_s.jpg" class="photo" alt="" /></a><a onmouseover="image_swap(this)" name="image_link">
+
+<img src="http://farm4.static.flickr.com/3204/2817262594_a083a1d58c_s.jpg" class="photo" alt="" /></a><a onmouseover="image_swap(this)" name="image_link"><img src="http://farm2.static.flickr.com/1104/738122654_15bc0f219a_s.jpg" class="photo" alt="" /></a><a onmouseover="image_swap(this)" name="image_link"><img src="http://farm2.static.flickr.com/1111/738096068_40b1178225_s.jpg" class="photo" alt="" /></a><a onmouseover="image_swap(this)" name="image_link"><img src="http://farm2.static.flickr.com/1083/738096116_ccdeaf7bd7_s.jpg" class="photo" alt="" /></a><a onmouseover="image_swap(this)" name="image_link"><img src="http://farm2.static.flickr.com/1049/738122700_e4fa99dd38_s.jpg" class="photo" alt="" /></a><a onmouseover="image_swap(this)" name="image_link">
+<img src="http://farm2.static.flickr.com/1237/737704706_ca3e66c929_s.jpg" class="photo" alt="" /></a>
+<a onmouseover="image_swap(this)" name="image_link"><img src="http://farm4.static.flickr.com/3204/2817262594_a083a1d58c_s.jpg" class="photo" alt="" /></a>
+<a onmouseover="image_swap(this)" name="image_link"><img src="http://farm2.static.flickr.com/1236/737704360_57cae9709d_s.jpg" class="photo" alt="" /></a>
+<a onmouseover="image_swap(this)" name="image_link"><img src="http://farm2.static.flickr.com/1154/737305248_6d4a057d41_s.jpg" class="photo" alt="" /></a>
+<a onmouseover="image_swap(this)" name="image_link"><img src="http://farm2.static.flickr.com/1273/589963223_abe5ddeba4_s.jpg" class="photo" alt="" /></a>
+<a onmouseover="image_swap(this)" name="image_link"><img src="http://farm2.static.flickr.com/1392/589954170_598ac472fb_s.jpg" class="photo" alt="" /></a>
+<a onmouseover="image_swap(this)" name="image_link"><img src="http://farm2.static.flickr.com/1101/589963031_0fc4af422c_s.jpg" class="photo" alt="" /></a>
+<a onmouseover="image_swap(this)" name="image_link"><img src="http://farm2.static.flickr.com/1309/589954338_1076a21843_s.jpg" class="photo" alt="" /></a>
+
+</div>
+
+
+<!-- <script type="text/javascript" charset="utf-8" src="//media.snaptalent.com/scripts/publish.js"></script>
+<script type="text/javascript" charset="utf-8">
+load_image_swap();
+WTF_KEY = 1;
+boldme('tab_overview');
+
+//highlight('VirtuOz Inc.')
+</script> -->
+
+<img id='qw' class='none' alt='' />
+</body>
+</html>

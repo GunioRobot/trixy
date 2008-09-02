@@ -182,3 +182,8 @@ float:right;
 font-size: 1.3em;
 font-variant:normal;
 }
+
+#quiz_intro{
+display: none;
+}
+
