@@ -1,7 +1,101 @@
-span.focus{
 
+/* =========== */
+/* = Frame = */
+/* =========== */
+
+
+
+
+
+
+div.quiz_frame_header{
+background:#FFFFFF none repeat scroll 0 0;
+border-color:#E0E0E0;
+border-style:solid;
+border-width:3px 1px;
+height:50px;
+margin-top:5px;
+overflow:hidden;
+width:101%;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+}
+
+
+
+
+body.frame_body{
+background-attachment:scroll;
+background-color:#EDF2F8;
+background-image:none;
+background-position:0 0;
+background-repeat:repeat;
+}
+
+div.quiz_frame_logo{
+float:left;
+position:absolute;
+}
+
+div#ocw{
+margin:8px 0 0 5px;
+}
+
+div#knol{
+margin:2px 0 0 5px;
+}
+div#pq{
+margin:0px 0 0 27px;
+}
+
+
+
+div.quiz_frame_source{
+font-size:0.7em;
+height:50px;
+left:280px;
+overflow:hidden;
+position:absolute;
+margin-top:5px;
+}
+
+
+
+div.quiz_frame_content{
+border:5px solid #DDDDDD;
+height:200px;
+margin-top:10px;
+padding:10px;
+background:#ffffff none repeat scroll 0 0;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+}
+
+
+div.quiz_frame_title{
+font-family: "Georgia", "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", Verdana, Helvetica, sans-serif;
+font-size:1.3em;
+position: absolute; 
+
+text-align:center;
+
+top:110px;
+width:500px;
+}
+
+
+
+/* =========== */
+/* = Quiz Items = */
+/* =========== */
+
+
+
+.focus{
+margin: 10px 0px;
 background:#FFF8E2 none repeat scroll 0 0;
-border-bottom:2px solid #E3D922;
+/* border-bottom:2px solid #E3D922; */
+text-align:center;
 }
 
 span.blank{
@@ -9,4 +103,82 @@ background:#FFFFD1 none repeat scroll 0 0;
 border:1px solid #E2C922;
 font-weight:bold;
 margin:0 5px;
+}
+
+
+
+div.quiz_intro_title{
+font-family: "Georgia", "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", Verdana, Helvetica, sans-serif;
+font-size:1.3em;
+position: absolute; 
+
+text-align:center;
+
+top:110px;
+width:305px;
+}
+
+
+div.quiz_frame_text{
+font-family: "Georgia", "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", Verdana, Helvetica, sans-serif;
+left:66px;
+margin-top:20px;
+position:absolute;
+top:130px;
+width:400px;
+text-align:center;
+overflow:hidden;
+line-height:1.5em;
+}
+
+
+/* =========== */
+/* = Intro = */
+/* =========== */
+
+
+
+div.quiz_intro_text{
+font-family:"Georgia","Lucida Grande","Lucida Sans Unicode","Trebuchet MS",Verdana,Helvetica,sans-serif;
+line-height:1.5em;
+margin-left:-5px;
+margin-top:20px;
+overflow:hidden;
+position:absolute;
+text-align:center;
+top:90px;
+width:300px;
+}
+
+div.quiz_selection{
+float:left;
+height:100px;
+margin:2px 0 20px 0;
+width:265px;
+-moz-border-bottom-colors:  #777 #888 #999 #aaa #bbb #ccc;
+-moz-border-top-colors:     #777 #888 #999 #aaa #bbb #ccc;
+-moz-border-left-colors:    #777 #888 #999 #aaa #bbb #ccc;
+-moz-border-right-colors:   #777 #888 #999 #aaa #bbb #ccc;
+border:10px solid #DDDDDD;
+padding:5px;
+background:#ffffff none repeat scroll 0 0;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+}
+
+
+div.quiz_image{
+border:1px dotted #EDF2F8;
+height:105px;
+margin-top:-3px;
+overflow:hidden;
+width:100px;
+float:left;
+}
+
+div.quiz_description{
+text-shadow: 2px 2px 2px #000;
+float:right;
+font-size: 1.3em;
+font-variant:normal;
 }
