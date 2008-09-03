@@ -1,3 +1,9 @@
+
+
+.buttons{
+display:none;
+}
+
 div#quiz_overlay {
 	position:absolute;
 	top: 0;
@@ -336,7 +342,13 @@ font-variant:normal;
 #skip{
 margin-left:10px;
 margin-top:-1px;
+}
 
+#continue{
+font-variant: normal; 
+margin-left: 150px; 
+margin-bottom: 0px; 
+margin-top: 28px;
 }
 
 .answer div:hover{
