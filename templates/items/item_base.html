@@ -1,0 +1,40 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quizframe.css"/>
+
+
+
+
+
+<title>{% block title %} {% endblock title %} </title></head>
+
+<body class="frame_body">
+
+
+<div class="quiz_frame_header">
+
+{% block quiz_frame_logo %}{% endblock %}
+
+
+<div class="quiz_frame_source" >
+{% block quiz_frame_source %} {% endblock quiz_frame_source %}
+</div>
+
+</div>
+
+
+<div class="quiz_frame_content" >
+
+<div class="quiz_frame_title" ><b>{% block quiz_frame_title %} {% endblock quiz_frame_title %}</b></div>
+
+
+<div class="quiz_frame_text">
+
+{% block quiz_frame_text %} {% endblock quiz_frame_text %}
+
+
+</div>
+
+
+</div>
+
+</body></html>
