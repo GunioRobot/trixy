@@ -35,7 +35,9 @@ def main():
                                         ('/rpc/?',
                                          RPCHandler),                                                                                                                     
                                         ('/viewscore/?',
-                                         ViewScore),   
+                                         ViewScore),  
+                                        ('/quiz/?',
+                                         QuizItem),                                         
                                         ],
                                        debug=True)
   wsgiref.handlers.CGIHandler().run(application)

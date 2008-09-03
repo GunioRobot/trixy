@@ -115,19 +115,15 @@ class PQIntro(webapp.RequestHandler):
 
 
 
-class Fancy(webapp.RequestHandler):
+class QuizItem(webapp.RequestHandler):
   #Put something here  
 
   def get(self):
 
-    template_values = {
-
-
-                                                    
-      }
-     
-      
-    path = tpl_path('base_fancy.html')
+    template_values = {}
+    
+    quiz_template = self.request.get('quiz_item') + ".html"
+    path = item_path(quiz_template)
     self.response.out.write(template.render(path, template_values))
 
 
@@ -191,11 +187,18 @@ class ViewScore(webapp.RequestHandler):
       if totalitems > 0:
         percentage = float(totalscore) / float(totalitems) * 100
         percentage = int(percentage)
+    
+      if percentage > 99:
+         passed = True
+      else:
+         passed = False
         
       template_values["scores"] = latest_scores
       template_values["totalscore"] = totalscore
       template_values["totalitems"] = totalitems
       template_values["percentage"] = percentage
+      template_values["passed"] = passed
+      
       
       
 

@@ -231,3 +231,49 @@ line-height:1.2em;
 width:103%;
 
 }
+
+
+
+
+/* =========== */
+/* = Score = */
+/* =========== */
+
+
+.score_result{
+-moz-border-bottom-colors:#EDF2F8 #FFFFFF;
+-moz-border-left-colors:#DDDDDD;
+-moz-border-radius-bottomleft:12px;
+-moz-border-radius-bottomright:12px;
+-moz-border-radius-topleft:12px;
+-moz-border-radius-topright:12px;
+-moz-border-right-colors:#DDDDDD;
+-moz-border-top-colors:#EDF2F8 #FFFFFF;
+background:white none repeat scroll 0 0;
+border-color:#DDDDDD;
+border-style:solid;
+border-width:12px 8px;
+float:left;
+height:170px;
+margin-left:4px;
+overflow:hidden;
+width:300px;
+-webkit-border-radius: 12px;
+}
+
+.aceometer{
+float:left;
+margin-left:10px;
+margin-top:-5px;
+}
+
+div.quiz_icon{
+float:right;
+margin-right:15px;
+}
+div.score_text{
+font-size:1.3em;
+font-variant:small-caps;
+margin:120px 0 0 22px;
+width:240px;
+}

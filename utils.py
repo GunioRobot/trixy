@@ -27,6 +27,10 @@ def tpl_path(template_file_name):
     return os.path.join(os.path.dirname(__file__),
                         'templates', template_file_name)
 
+def item_path(template_file_name):
+    return os.path.join(os.path.dirname(__file__),
+                        'templates/items/', template_file_name)
+                        
 def login_url(uri):
   # Construct Login/Logout URL.
   if users.get_current_user():

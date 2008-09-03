@@ -26,7 +26,7 @@ return this.each(function() {
 $.fn.quizbox.start = function(el, o) {
 if (opts.animating) return false;
 
-doInit(); /* DELETES EXISTING DATASTORE ENTRIES - JUST FOR DEMO */
+ doInit();  /*  Should be when quiz initiates, after intro. DELETES EXISTING DATASTORE ENTRIES - JUST FOR DEMO */
 
 
 
@@ -187,7 +187,7 @@ if (opts.itemArray[opts.itemNum].item_type == "score") {
 var itemOpts = {
     'left':		143 + 'px', 
     'top':		0 + 'px', 
-    'width':	332 + 'px', 
+    'width':	392 + 'px', 
     'height':	405 + 'px'	
 };
 
@@ -593,6 +593,7 @@ $('#minutes-inner').animate({width: 0}, update_minute(),reset_minute);
         $('a').find('#answer1').click(function(){ submit_answer('#answer1'); });
         $('a').find('#answer2').click(function(){ submit_answer('#answer2'); });
         $('a').find('#answer3').click(function(){ submit_answer('#answer3'); });
+        
         
 
     
