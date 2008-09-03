@@ -178,7 +178,11 @@ var itemLeft	= viewportPos[2] + Math.round((viewportPos[0] - itemSize[0]) / 2) -
 var itemTop		= viewportPos[3] + Math.round((viewportPos[1] - itemSize[1]) / 2) - 40;
 
 
- /* redundant - TODO refactor */
+     /* =========== */
+/* = Dimension properties = */
+/* =========== */
+
+ /*  redundant - TODO refactor */
 
 if (opts.itemArray[opts.itemNum].item_type == "score") {
 
@@ -289,6 +293,11 @@ if (opts.active) {
     }
  }
 };
+
+
+   /* =========== */
+/* = Update Button Display = */
+/* =========== */
 
 $.fn.quizbox.updateDetails = function() {
 $("#quiz_bg,#quiz_close").show();
@@ -461,7 +470,9 @@ $("#quiz_loading > div").css('top', (loadingFrame * -40) + 'px');
 loadingFrame = (loadingFrame + 1) % 12;
 };
 
-
+     /* =========== */
+/* = Create Buttons = */
+/* =========== */
 
 
 $.fn.quizbox.init = function() {
@@ -490,7 +501,8 @@ $('<a id="choose_quiz" class="answer" style="font-size:13px; margin-left:30px;" 
      $('<a id="answer2" class="answer" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" style="margin-left:9px;" id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions');
    
  $('<div id="quiz_instructions2" class="buttons" style=" margin-top:11px"></div>').appendTo('#quiz_title');
-    $('<a id="answer1" onmouseover="" class="answer"  href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
+    $('<div class="timer_wrapper"><!--timer TODO --></div>').appendTo('#quiz_instructions2');
+     $('<a id="answer1" onmouseover="" class="answer"  href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
     $('<a id="answer2" class="answer" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
     $('<a id="skip" class="answer" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow"><img src="/static/stylesheets/img/pinkarrow.png" /></div><div class="skipitem" id="skiptext">Skip</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
      
@@ -590,7 +602,11 @@ $('#minutes-inner').animate({width: 0}, update_minute(),reset_minute);
 //update_minute());
 }          
 
-     
+
+
+     /* =========== */
+/* = Click Binding = */
+/* =========== */
      
      /* submit answers and proceed to next question */
 
