@@ -155,7 +155,9 @@ p.quiz_distributor{
 font-size:.8em;
 }
 
-
+li.select_quiz {
+display: block;
+}
 
 div.quiz_selection{
 float:left;
@@ -269,7 +271,7 @@ margin-left:-5px;
 
 div.quiz_icon{
 float:right;
-margin-right:15px;
+overflow:hidden;
 }
 div.score_text{
 font-size:1.3em;

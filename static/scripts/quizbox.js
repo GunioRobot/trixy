@@ -108,6 +108,8 @@ imgRegExp = new RegExp('\.' + imgRegExp + '$', 'i');
 
 var url = opts.itemArray[n].url;
 
+console.log('loading URL', url);
+
 if (url.match(/#/)) {
     var target = window.location.href.split('#')[0]; target = url.replace(target,'');
 
@@ -487,24 +489,24 @@ if (!$('#quiz_wrap').length) {
 
    /* append score buttons to iframe */
  $('<div id="quiz_score"  class="buttons"></div>').appendTo('#quiz_title');
-  $('<a id="continue" class="answer" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow" style="margin-left:12px;"><img src="/static/stylesheets/img/pinkarrow.png" /></div><div class="skipitem" id="skiptext">Continue</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_score');
+  $('<a id="continue" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow" style="margin-left:12px;"><img src="/static/stylesheets/img/pinkarrow.png" /></div><div class="skipitem" id="skiptext">Continue</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_score');
      
 
    /* append intro buttons to iframe */
  $('<div id="quiz_intro"  class="buttons"></div>').appendTo('#quiz_title');
-$('<a id="take_quiz" onmouseover="" style="margin-left:25px;" class="answer" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="answertext" id="take_quiz" style="width: 90px; font-size:20px;"></div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_intro');
-$('<a id="choose_quiz" class="answer" style="font-size:13px; margin-left:30px;" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main" style="width:45px;"><div class="answertext" style="margin: 3px 0pt 0pt 1px; font-size: 13px; width: 36px; line-height: 1.1em;" id="choose_quiz"></div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_intro');
+$('<a id="take_quiz" onmouseover="" style="margin-left:25px;" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="answertext" id="take_quiz" style="width: 90px; font-size:20px;"></div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_intro');
+$('<a id="choose_quiz" class="answer" style="font-size:13px; margin-left:30px;" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main" style="width:45px;"><div class="answertext" style="margin: 3px 0pt 0pt 1px; font-size: 13px; width: 36px; line-height: 1.1em;" id="choose_quiz"></div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_intro');
 
    /* append instruction buttons to iframe */
  $('<div id="quiz_instructions"  class="buttons"></div>').appendTo('#quiz_title');
-    $('<a id="answer1" onmouseover="" class="answer" style="margin-left:20px;" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" style="margin-left:7px;" id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions');
-     $('<a id="answer2" class="answer" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" style="margin-left:9px;" id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions');
+    $('<a id="answer1" onmouseover="" class="answer" style="margin-left:20px;" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" style="margin-left:7px;" id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions');
+     $('<a id="answer2" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" style="margin-left:1px; width:101%;" id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions');
    
- $('<div id="quiz_instructions2" class="buttons" style=" margin-top:11px"></div>').appendTo('#quiz_title');
+ $('<div id="quiz_instructions2" class="buttons" style=" margin-top:-2px"></div>').appendTo('#quiz_title');
     $('<div class="timer_wrapper"><!--timer TODO --></div>').appendTo('#quiz_instructions2');
-     $('<a id="answer1" onmouseover="" class="answer"  href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
-    $('<a id="answer2" class="answer" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
-    $('<a id="skip" class="answer" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow"><img src="/static/stylesheets/img/pinkarrow.png" /></div><div class="skipitem" id="skiptext">Skip</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
+     $('<a id="answer1" onmouseover="" class="answer"  href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
+    $('<a id="answer2" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
+    $('<a id="skip" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow"><img src="/static/stylesheets/img/pinkarrow.png" /></div><div class="skipitem" id="skiptext">Skip</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
      
 
     
@@ -512,10 +514,10 @@ $('<a id="choose_quiz" class="answer" style="font-size:13px; margin-left:30px;" 
      $('<div id="quiz_answers" class="buttons"></div>').appendTo('#quiz_title');
      $('<div class="timer_wrapper"><!--timer TODO --></div>').appendTo('#quiz_answers');
      
-    $('<a id="answer1" onmouseover="" class="answer" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_answers');
-     $('<a id="answer2" class="answer" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_answers');
-      $('<a id="answer3" class="answer" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" id="answer3"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_answers');
-     $('<a id="skip" class="answer" href="javascript:;"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow"><img src="/static/stylesheets/img/pinkarrow.png" /></div><div class="skipitem" id="skiptext">Skip</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_answers');
+    $('<a id="answer1" onmouseover="" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_answers');
+     $('<a id="answer2" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_answers');
+      $('<a id="answer3" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" id="answer3"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_answers');
+     $('<a id="skip" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow"><img src="/static/stylesheets/img/pinkarrow.png" /></div><div class="skipitem" id="skiptext">Skip</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_answers');
      
      /* initialize automatic countdown...if it reaches zero, changeItem +1 */
      $("#minutes-box").hide();
@@ -614,12 +616,10 @@ $('#minutes-inner').animate({width: 0}, update_minute(),reset_minute);
         
         
 
-    
-    
 function submit_answer(answer){
 
-console.log('submitting item');
-console.log(answer.id);
+console.log('clicked on link with id:', answer.id);
+
 
 if (answer.id == "#skip") {
 var answer_text = "skip_item";
@@ -642,6 +642,24 @@ doAdd(answer_text, answer_index)
  if (opts.itemArray[opts.itemNum].item_type == "score"){
      console.log('TODO: Score dialog'); return false;
  }
+ 
+
+      if (answer.id == "choose_quiz"){ 
+          console.log('changing quizzes'); /* next_quiz(answer.id);  */
+          
+
+/* TODO cycle through quiz choices */
+
+
+          var selection = $('#quiz_selections', window.frames[0].document);
+          
+          selection.find('#quiz_selections').toggle();
+          
+        
+          return false;}
+
+ 
+ 
      
 /* proceed to next item */ $.fn.quizbox.changeItem(opts.itemNum + 1); return false;
 

@@ -31,8 +31,8 @@ TumblrCodeHighlight = function() {
 	
 	window.onload = cleanAndColor;
 
-	var baseUrl = 'http://drnicwilliams.com/';
-	var codeHighlightUrl = baseUrl + 'external/CodeHighlighter/';
+	var baseUrl = window.location;
+	var codeHighlightUrl = baseUrl + 'static/beehold/';
 	requestContent(codeHighlightUrl + 'code_highlighter.js');
 	var languages = ['css','html','javascript','ruby'];
 	for (var i = 0; i < languages.length; i++) {
