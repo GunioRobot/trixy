@@ -344,8 +344,8 @@ $('#quiz_intro div#take_quiz').html(opts.itemArray[opts.itemNum].take_quiz);
    
 $('#quiz_intro div#choose_quiz').html(opts.itemArray[opts.itemNum].choose_quiz);
 
-$('#take_quiz').click(function(){ $.fn.quizbox.changeItem(opts.itemNum + 1); return false; });
-$('#choose_quiz').click(function(){ console.log('TODO: Choose other quizzes'); return false;  });
+
+
 
 
    }else if (opts.itemArray[opts.itemNum].item_type == "instructions") {

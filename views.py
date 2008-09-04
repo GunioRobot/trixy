@@ -1,4 +1,5 @@
 import logging
+import random
 from utils import *
 from model import *
 
@@ -147,8 +148,39 @@ class PQDemo(webapp.RequestHandler):
     
 
 
+class ViewAd(webapp.RequestHandler):
+  #Put something here  
+
+  def get(self):
+      # Create random list of three quiz items.
+       
+
+    quiz_items = []
+    all_quiz_items = ['{url: "/quiz/?quiz_item=python", item_type:"quiz_item", answer1: "Attribute", answer2: "Class", answer3: "Method", index: "Class"},',
+'{url: "/quiz/?quiz_item=biochem", item_type:"quiz_item", answer1: "Organotrophs", answer2: "Autotrophs", answer3: "Heterotrophs", index: "Heterotrophs" },',
+'{url: "/quiz/?quiz_item=bayesian", item_type:"quiz_item", answer1: "Clique Tree", answer2: "Variational Method", answer3: "Gaussian Distribution", index: "Clique Tree" },',
+'{url: "/quiz/?quiz_item=performance_ads", item_type:"quiz_item", answer1: "GPS", answer2: "VoIP", answer3: "IP", index: "VoIP" },',
+'{url: "/quiz/?quiz_item=callbacks", item_type:"quiz_item", answer1: "transport", answer2: "request", answer3: "response", index: "transport" },',
+'{url: "/quiz/?quiz_item=renewable_energy", item_type:"quiz_item", answer1: "biomass", answer2: "ethanol fuel", answer3: "petrolium", index: "ethanol fuel" },',
+]
 
 
+   
+
+    
+    
+    quiz_item_count = 3
+
+    quiz_items = random.sample(all_quiz_items,
+                              quiz_item_count)
+
+
+    template_values = {"quiz_items": quiz_items }
+
+      
+    path = tpl_path('ad.html')
+    self.response.out.write(template.render(path, template_values))
+    
 
 
 

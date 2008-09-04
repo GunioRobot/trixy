@@ -16,7 +16,7 @@ border-width:3px 1px;
 height:50px;
 margin-top:5px;
 overflow:hidden;
-width:101%;
+width:133px;
 -moz-border-radius: 3px;
 -webkit-border-radius: 3px;
 }
@@ -46,6 +46,9 @@ margin:2px 0 0 5px;
 }
 div#pq{
 margin:0px 0 0 27px;
+}
+div#pg{
+margin:2px 0 0 5px;
 }
 
 
