@@ -162,6 +162,10 @@ class ViewAd(webapp.RequestHandler):
 '{url: "/quiz/?quiz_item=performance_ads", item_type:"quiz_item", answer1: "GPS", answer2: "VoIP", answer3: "IP", index: "VoIP" },',
 '{url: "/quiz/?quiz_item=callbacks", item_type:"quiz_item", answer1: "transport", answer2: "request", answer3: "response", index: "transport" },',
 '{url: "/quiz/?quiz_item=renewable_energy", item_type:"quiz_item", answer1: "biomass", answer2: "ethanol fuel", answer3: "petrolium", index: "ethanol fuel" },',
+'{url: "/quiz/?quiz_item=pg_fundraising", item_type:"quiz_item", answer1: "marketing", answer2: "consulting", answer3: "programming", index: "consulting"},',
+'{url: "/quiz/?quiz_item=pg_patents", item_type:"quiz_item", answer1: "collective feedback", answer2: "database", answer3: "one-click", index: "one-click"},',
+'{url: "/quiz/?quiz_item=pg_vcs", item_type:"quiz_item", answer1: "valuations", answer2: "investments", answer3: "shares", index: "valuations"},',
+'{url: "/quiz/?quiz_item=pg_investment", item_type:"quiz_item", answer1: "tax", answer2: "copyright", answer3: "antitrust", index: "antitrust"},',
 ]
 
 
