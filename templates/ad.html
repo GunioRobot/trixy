@@ -16,60 +16,51 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
-
-/* start_countdown_minute(); - Countdown TODO */
-
-
-
-/*  Load quiz item iframes - static/scripts/quizbox.js redundant */
-
-
-
-$("p#apply a").quizbox({ 'zoomSpeedIn': 400, 'zoomSpeedOut': 400, 'overlayShow': true, 'overlayOpacity': 0.3, 'itemLoadCallback': getGroupItems }); 
-
-$("span#apply_button a").quizbox({ 'zoomSpeedIn': 400, 'zoomSpeedOut': 400, 'overlayShow': true, 'overlayOpacity': 0.3,
-'itemLoadCallback': getGroupItems }); 
-
-$("span#apply_button_d a").quizbox({ 'zoomSpeedIn': 400, 'zoomSpeedOut': 400, 'overlayShow': true, 'overlayOpacity': 0.3,
-'itemLoadCallback': getGroupItems }); 
-
+	/* start_countdown_minute(); - Countdown TODO */
+	/*  Load quiz item iframes - static/scripts/quizbox.js redundant */
+	$("p#apply a").quizbox({
+		'zoomSpeedIn': 400,
+		'zoomSpeedOut': 400,
+		'overlayShow': true,
+		'overlayOpacity': 0.3,
+		'itemLoadCallback': getGroupItems
+	}); 
+	$("span#apply_button a").quizbox({
+		'zoomSpeedIn': 400,
+		'zoomSpeedOut': 400,
+		'overlayShow': true,
+		'overlayOpacity': 0.3,
+		'itemLoadCallback': getGroupItems
+	}); 
+	$("span#apply_button_d a").quizbox({
+		'zoomSpeedIn': 400,
+		'zoomSpeedOut': 400,
+		'overlayShow': true,
+		'overlayOpacity': 0.3,
+		'itemLoadCallback': getGroupItems
+	}); 
 });
 
-
-     /* =========== */
+/* =========== */
 /* = URL Array = */
 /* =========== */
-
 var quizitemList = [
+	{url: "/intro/?page=intro", item_type:"intro", take_quiz: "Take This Quiz", choose_quiz: "Take Another Quiz", timed: false},
+	{url: "/intro/?page=instructions", item_type:"instructions", answer1: "Dog Ate", answer2: "Web Made", timed: false},
+	{url: "/intro/?page=instructions2", item_type:"instructions2", answer1: "compilers", answer2: "interpreters", timed: false},
 
+	{% for quiz_item in quiz_items %}
+	{{ quiz_item }}
+	{% endfor %}
 
-
-{url: "/intro/?page=intro", item_type:"intro", take_quiz: "Take This Quiz", choose_quiz: "Take Another Quiz"},
-{url: "/intro/?page=instructions", item_type:"instructions", answer1: "Dog Ate", answer2: "Web Made"},
-{url: "/intro/?page=instructions2", item_type:"instructions2", answer1: "compilers", answer2: "interpreters"},
-
-
-
-{% for quiz_item in quiz_items %}
-{{ quiz_item }}
-{% endfor %}
-
-
-
-
-{url: "/viewscore/", item_type:"score", answer1: "Send Score to Plopquiz, Inc.", answer2: "Don't Send Score" }
-
-
-
-/*   */
-
+	{url: "/viewscore/", item_type:"score", answer1: "Send Score to Plopquiz, Inc.", answer2: "Don't Send Score", timed: false}
 
 ];
 
 function getGroupItems(opts) {
-jQuery.each(quizitemList, function(i, val) {
-opts.itemArray.push(val);
-});
+	jQuery.each(quizitemList, function(i, val) {
+		opts.itemArray.push(val);
+	});
 }
 
 
@@ -81,52 +72,57 @@ opts.itemArray.push(val);
 
 function Request(function_name, opt_argv) {
 
-if (!opt_argv)
-opt_argv = new Array();
+	if (!opt_argv)
+		opt_argv = new Array();
 
-// Find if the last arg is a callback function; save it
-var callback = null;
-var len = opt_argv.length;
-if (len > 0 && typeof opt_argv[len-1] == 'function') {
-callback = opt_argv[len-1];
-opt_argv.length--;
-}
-var async = (callback != null);
+	// Find if the last arg is a callback function; save it
+	var callback = null;
+	var len = opt_argv.length;
 
-// Encode the arguments in to a URI
-var query = 'action=' + encodeURIComponent(function_name);
-for (var i = 0; i < opt_argv.length; i++) {
-var key = 'arg' + i;
-var val = JSON.stringify(opt_argv[i]);
-query += '&' + key + '=' + encodeURIComponent(val);
-}
-query += '&time=' + new Date().getTime(); // IE cache workaround
+	if (len > 0 && typeof opt_argv[len-1] == 'function') {
+		callback = opt_argv[len-1];
+		opt_argv.length--;
+	}
 
-// Create an XMLHttpRequest 'GET' request w/ an optional callback handler 
-var req = new XMLHttpRequest();
-req.open('GET', '/rpc?' + query, async);
+	var async = (callback != null);
 
-if (async) {
-req.onreadystatechange = function() {
-if(req.readyState == 4 && req.status == 200) {
-var response = null;
-try {
-response = JSON.parse(req.responseText);
-} catch (e) {
-response = req.responseText;
-}
-callback(response);
-}
-}
-}
+	// Encode the arguments in to a URI
+	var query = 'action=' + encodeURIComponent(function_name);
 
-// Make the actual request
-req.send(null);
+	for (var i = 0; i < opt_argv.length; i++) {
+		var key = 'arg' + i;
+		var val = JSON.stringify(opt_argv[i]);
+		query += '&' + key + '=' + encodeURIComponent(val);
+	}
+	query += '&time=' + new Date().getTime(); // IE cache workaround
+
+	// Create an XMLHttpRequest 'GET' request w/ an optional callback handler 
+	var req = new XMLHttpRequest();
+	req.open('GET', '/rpc?' + query, async);
+
+	if (async) {
+		req.onreadystatechange = function() {
+			if(req.readyState == 4 && req.status == 200) {
+				var response = null;
+				try {
+					response = JSON.parse(req.responseText);
+				} catch (e) {
+					response = req.responseText;
+				}
+				callback(response);
+			}
+		}
+	}
+
+	// Make the actual request
+	req.send(null);
 }
 
 // Adds a stub function that will pass the arguments to the AJAX call 
 function InstallFunction(obj, functionName) {
-obj[functionName] = function() { Request(functionName, arguments); }
+	obj[functionName] = function() { 
+		Request(functionName, arguments);
+	}
 }
 
 
@@ -139,22 +135,17 @@ InstallFunction(server, 'Add');
 InstallFunction(server, 'Init');
 
 
-
 function doAdd(ans, co) {
-
-server.Add(ans, co, onAddSuccess);
-
+	server.Add(ans, co, onAddSuccess);
 }
 
 function doInit() {
-
-server.Init();
-
+	server.Init();
 }
 
-function onAddSuccess(response) {}
-
-
+function onAddSuccess(response)
+{
+}
 </script>
 
 
