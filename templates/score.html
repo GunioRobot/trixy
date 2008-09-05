@@ -14,6 +14,7 @@
 <link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/score.css"/>
 <link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quizframe.css"/>
 <title>Plopquiz Score Report </title>
+
 </head>
 
 
@@ -27,37 +28,40 @@
 </div>
 
 
-<div class="quiz_frame_content" style="height:290px;">
+<div class="quiz_frame_content" style="height:294px;">
 
 
 
 
 
-<div class="quiz_intro_text" style="width:370px;">
+<div class="quiz_intro_text" style="width:370px; margin-top:10px">
 
 <p class="quiz_distributor"><b>Score Report</b></p> 
 
 
-<div class="quiz_selection" style="height:245px; background: #EDF2F8 none repeat scroll 0 0; width: 325px;">
+<div class="quiz_selection" style="height:195px; background: #EDF2F8 none repeat scroll 0 0; width: 325px;">
 
 
 
 <div class="score_result">
 
-<div class="quiz_icon"  style="margin-left: -97px;">
+
+<div class="quiz_icon"  id="full_icon" style="margin-left: -97px;">
 <img src="/static/html/img/phone_interview.png" /></div>
-<div class="quiz_icon" style="height: 60px;"
-><img src="/static/html/img/phone_interview_empty.png"  />
+
+<div class="quiz_icon" id="empty_icon" style="height: 0px;">
+<img src="/static/html/img/phone_interview_empty.png"  />
 </div>
+
 <div class="aceometer">
 <img  src="http://chart.apis.google.com/chart?chs=190x108&cht=gom&chd=t:{{ percentage }}&chl={{ percentage }}%%20|%20Answers">
 </div>
 
 <div class="score_text">
 {% if passed  %}
-You have won! Yay for you!
+You have won! Yay for you! <!-- TODO: Change This -->
 {% else %}
-You cannot fail until you give up.
+You cannot fail until you give up. <!-- TODO: Change This -->
 {% endif %}
 </div>
 
@@ -91,5 +95,18 @@ You cannot fail until you give up.
 
 
 
+<script>
+
+empty_height = 100 - {{ percentage }} + 'px';
+
+console.log(empty_height);
+
+empty = document.getElementById('empty_icon');
+
+empty.style.height = empty_height;
+
+
+
+</script>
 
 </body></html>

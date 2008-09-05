@@ -166,6 +166,10 @@ class ViewAd(webapp.RequestHandler):
 '{url: "/quiz/?quiz_item=pg_patents", item_type:"quiz_item", answer1: "collective feedback", answer2: "database", answer3: "one-click", index: "one-click"},',
 '{url: "/quiz/?quiz_item=pg_vcs", item_type:"quiz_item", answer1: "valuations", answer2: "investments", answer3: "shares", index: "valuations"},',
 '{url: "/quiz/?quiz_item=pg_investment", item_type:"quiz_item", answer1: "tax", answer2: "copyright", answer3: "antitrust", index: "antitrust"},',
+'{url: "/quiz/?quiz_item=su_corporation", item_type:"quiz_item", answer1: "LLC", answer2: "Sub-S", answer3: "General", index: "antitrust"},',
+'{url: "/quiz/?quiz_item=wiki_stock", item_type:"quiz_item", answer1: "preferred", answer2: "common", answer3: "registered", index: "preferred"},',
+'{url: "/quiz/?quiz_item=wiki_pill", item_type:"quiz_item", answer1: "merger", answer2: "takeover", answer3: "regulation", index: "preferred"},',
+'{url: "/quiz/?quiz_item=wiki_income", item_type:"quiz_item", answer1: "capital gain", answer2: "dividends", answer3: "salary", index: "preferred"},',
 ]
 
 
@@ -173,7 +177,7 @@ class ViewAd(webapp.RequestHandler):
 
     
     
-    quiz_item_count = 6
+    quiz_item_count = 14
 
     quiz_items = random.sample(all_quiz_items,
                               quiz_item_count)

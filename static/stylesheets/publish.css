@@ -131,6 +131,15 @@ h2 {
     font-weight: bold;
 }
 
+#description_title{
+margin: 20px 0px;
+}
+
+h3:hover#description_title{
+text-decoration:underline;
+}
+
+
 /* Overview ***************************************************/
 
 #view_overview .padded {

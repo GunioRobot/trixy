@@ -20,8 +20,30 @@ overflow:hidden;
 -webkit-border-radius: 3px;
 }
 
+div.tab{
+-moz-border-radius-topright:18px;
+background-color:#CDCDCD;
+border-right:1px solid #CDCDCD;
+bottom:0;
+font-variant:small-caps;
+height:40px;
+line-height:2.2em;
+padding-right:23px;
+position:absolute;
+right:0;
+text-shadow:1px 1px 1px #FFFFFF;
+width:130px;
+z-index:100;
+}
 
 
+img.tab_left{
+height:40px;
+left:-54px;
+position:absolute;
+top:0;
+width:54px;
+}
 
 body.frame_body{
 background-attachment:scroll;
@@ -74,15 +96,15 @@ background:#ffffff none repeat scroll 0 0;
 
 
 div.quiz_frame_title{
-font-family: "Georgia", "Lucida Grande", "Lucida Sans Unicode", "Trebuchet MS", Verdana, Helvetica, sans-serif;
-font-size:1.5em;
-position: absolute; 
-text-align:center;
-height:28px;
+font-family:"Georgia","Lucida Grande","Lucida Sans Unicode","Trebuchet MS",Verdana,Helvetica,sans-serif;
+font-size:1.1em;
+height:40px;
 margin-left:240px;
 overflow:hidden;
-top:22px;
-width: 250px;
+position:absolute;
+text-align:center;
+top:21px;
+width:250px;
 }
 
 
@@ -156,6 +178,7 @@ top:80px;
 
 p.quiz_distributor{
 font-size:.8em;
+margin-bottom:0;
 }
 
 li.select_quiz {
@@ -268,7 +291,8 @@ width:300px;
 
 .aceometer{
 float:left;
-margin-left:-5px;
+margin-left:5px;
+margin-top:-10px;
 
 }
 

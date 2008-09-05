@@ -212,7 +212,7 @@ $.fn.quizbox = function(settings) {
 			 'left':		143 + 'px', 
 			 'top':		0 + 'px', 
 			 'width':	332 + 'px', 
-			 'height':	400 + 'px'	
+			 'height':	410 + 'px'	
 		 };
 	 }else{   
 		 /* during quiz */
@@ -220,7 +220,7 @@ $.fn.quizbox = function(settings) {
 			 'left':		73 + 'px', 
 			 'top':		10 + 'px', 
 			 'width':	512 + 'px', 
-			 'height':	400 + 'px'	
+			 'height':	404 + 'px'	
 		 };
 	 }
 	 
@@ -270,13 +270,68 @@ $.fn.quizbox = function(settings) {
  };
 
 
- /* =========== */
- /* = Update Button Display = */
- /* =========== */
+
+
+
+
+
 
  $.fn.quizbox.updateDetails = function() {
 	 $("#quiz_bg,#quiz_close").show();
+	 
+	 
+	  /* =========== */
+ /* = Instructions Animations = */
+ /* =========== */
+ 
 
+		 if (opts.itemArray[opts.itemNum].item_type == "instructions") {
+		     console.log('whatup');
+		 var hover_count = 0
+		 var example1 = $('div#example_1', window.frames[0].document);
+		 var example2 = $('div#example_2', window.frames[0].document);
+		 
+		 $("a#answer1").hover(function(){
+		    hover_count += 1;
+                    if (hover_count > 1) {
+		            $('div#example_1').hide();
+		            $('div#example_2').show();
+		            
+		            example1.hide();
+		            example2.show();
+		            
+		            console.log('YOO');
+		            }
+    
+		    }, function() {
+
+         });
+         
+  
+         
+          $("a#answer2").hover(function(){
+		    hover_count += 1;
+                    if (hover_count > 1) {
+		            $('div#example_1').hide();
+		            $('div#example_2').show();
+		            
+		            example1.hide();
+		            example2.show();
+		            console.log('YOO');
+		            }
+		    }, function() {
+
+         });
+		 
+     }
+
+
+ /* =========== */
+ /* = Update Button Display = */
+ /* =========== */
+ 
+ 
+ 
 	 /* Fill in titles for answer keys - redundant! make this more robust before something blows up*/
 	 if (opts.itemArray[opts.itemNum].item_type == "quiz_item") {
 		 $('#quiz_title').show();
@@ -306,11 +361,34 @@ $.fn.quizbox = function(settings) {
 				easing:	'linear',
 				complete:	function()
 				{
-					$('#skip').click();
+					$('#skip').click(); /* not the same as skip - TODO format ajax call for timeout */
 					$('#timer_bar').css('width', '100%');
 				}
 			});
+			
+			         $('#timer_bar_instruction').animate(
+			{
+				width:	0
+			},
+			{
+				duration:	8000,
+				easing:	'linear',
+				complete:	function()
+				{
+					$('#skip').click(); /* not the same as skip - TODO format ajax call for timeout */
+					$('#timer_bar_instruction').css('width', '100%');
+				}
+			});
+
+
+			
 		 },1000);
+
+       
+		 
+		 
+		 
+		 
 	 }else if (opts.itemArray[opts.itemNum].item_type == "intro") {
 		 /* hide answers and show hidden intro choices */
 		 $('#quiz_title').show();
@@ -451,19 +529,23 @@ $.fn.quizbox = function(settings) {
 		 /* append intro buttons to iframe */
 		 // This is all really terrible. This should be done in HTML loaded from the server, the use jQuery to replace things like buttons and text
 		 // There is WAAY to much overhead here.
+		 
+		 // This will be in the HTML very, very soon - James
+		 
 		 $('<div id="quiz_intro"  class="buttons"></div>').appendTo('#quiz_title');
 		 $('<a id="take_quiz" onmouseover="" style="margin-left:25px;" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="answertext" id="take_quiz" style="width: 90px; font-size:16px;"></div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_intro');
 			 $('<a id="choose_quiz" class="answer" style="font-size:13px; margin-left:30px;" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main" style="width:45px;"><div class="answertext" style="margin: 3px 0pt 0pt 1px; font-size: 13px; width: 36px; line-height: 1.1em;" id="choose_quiz"></div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_intro');
 
+
 			 /* append instruction buttons to iframe */
 			 $('<div id="quiz_instructions"  class="buttons"></div>').appendTo('#quiz_title');
-			 $('<a id="answer1" onmouseover="" class="answer" style="margin-left:20px;" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" style="margin-left:7px;" id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions');
+			 $('<a id="answer1" onmouseover="" class="answer" style="margin-left:20px;" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" style="margin-left:19px;" id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions');
 			 $('<a id="answer2" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" style="margin-left:1px; width:101%;" id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions');
 
-			 $('<div id="quiz_instructions2" class="buttons" style=" margin-top:-2px"></div>').appendTo('#quiz_title');
+			 $('<div id="quiz_instructions2" class="buttons" style=" margin-top:7px"></div>').appendTo('#quiz_title');
 			 //Arg, this has been getting animated while not visible, one ID per page!
-			 //$('<div id="quiz_timer" class="timer_wrapper"><div id="timer_bar" class="timer_inner"></div></div>').appendTo('#quiz_instructions2');
-			 $('<a id="answer1" onmouseover="" class="answer"  href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
+			 $('<div class="timer_wrapper" id="quiz_timer_instruction"><div id="timer_bar_instruction" class="timer_inner"></div></div>').appendTo('#quiz_instructions2');
+			$('<a id="answer1" onmouseover="" class="answer"  href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
 			 $('<a id="answer2" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
 			 $('<a id="skip" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow"><img src="/static/stylesheets/img/pinkarrow.png" /></div><div class="skipitem" id="skiptext">Skip</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
 
@@ -568,6 +650,10 @@ $.fn.quizbox = function(settings) {
 		 /* =========== */
 		 /* = Click Binding = */
 		 /* =========== */
+
+     
+     
+     
 		 /* submit answers and proceed to next question */
 		 $('#quiz_title').find('a').click(function() {
 				 submit_answer(this);

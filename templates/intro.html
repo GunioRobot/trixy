@@ -38,28 +38,7 @@ start:1
 });
 
 
-$(document).ready(function() {
-    
-
-$("a#choose_quiz").bind('click', function() {
-
-console.info('clicked button')
-
-});
-
-
-
-$(".roundblue").bind('click', function() {
-$('span.sourcetext').hide('slow');
-$('a.sourcelink').show('slow');
-$('.whosaid').show('slow');
-$('.main').css('height', 430);
-});
-
-
-});
-
-
+// Problem is that the next button is actually in the parent frame.
 
 
 -->
@@ -79,7 +58,7 @@ $('.main').css('height', 430);
 </div>
 
 
-<div class="quiz_frame_content" style="height:180px;">
+<div class="quiz_frame_content" style="height:220px;">
 
 <!--<div class="quiz_intro_title" ><b>Instructions</b></div>-->
 
@@ -95,6 +74,7 @@ $('.main').css('height', 430);
 <div id="quiz_selections">
 
 <li class="select_quiz">
+
 <div class="quiz_selection" id="1">
 
 <div class="quiz_image"><img src="/static/html/img/phone_interview.png"/></div>
@@ -113,13 +93,13 @@ $('.main').css('height', 430);
 <li class="select_quiz">
 <div class="quiz_selection" id="2" style="display:none;">
 
-<div class="quiz_image"><img src="/static/html/img/phone_interview.png"/></div>
+<div class="quiz_image"><img src="/static/html/img/energy.png"/></div>
 
 <div class="quiz_description">
 
-<div class="quiz_description_title">The Fatty Quiz <!--(aka "THE FAIL")--></div>
+<div class="quiz_description_title">Energy Quiz</div>
 
-<div class="quiz_description_text">Earn a phone interview with the Plopquiz team. </div>
+<div class="quiz_description_text"></div>
 
 </div>
 
