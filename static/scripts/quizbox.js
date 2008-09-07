@@ -177,34 +177,37 @@
 
 		// buttons look kinda crappy, they need to be build in a better
 		// liqiud layout, they keep dropping down, and with only two.
-		$('#quiz_buttonbox .button').each(function(i)
-		{
-			if(qi.answers[i] && qi.answers[i].label)
-				$(this)
-					.html(qi.answers[i].label)
-					.show()
-					.click((function(e)
-					{
-						if(qi.answers[i].load)
-							return function(e)
-							{
-								$.fn.quizbox.loadQuestion(qi.answers[i].load);
-							};
-						else
-							return function(e)
-							{
-								$.fn.quizbox.answerQuestion($(this).text());
-							};
-					})());
-		})
-		.hover(function()
-		{
-			$('#quiz_blank').html($(this).html());
-		},
-		function()
-		{
-			$('#quiz_blank').html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
-		});
+		$('#quiz_buttonbox .button')
+			.unbind('click')
+			.unbind('hover')
+			.each(function(i)
+			{
+				if(qi.answers[i])
+					$(this)
+						.html(qi.answers[i].label)
+						.show()
+						.click((function(e)
+						{
+							if(qi.answers[i].load)
+								return function(e)
+								{
+									$.fn.quizbox.loadQuestion(qi.answers[i].load);
+								};
+							else
+								return function(e)
+								{
+									$.fn.quizbox.answerQuestion($(this).text());
+								};
+						})());
+			})
+			.hover(function()
+			{
+				$('#quiz_blank').html($(this).html());
+			},
+			function()
+			{
+				$('#quiz_blank').html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+			});
 	}; // $.fn.quizbox.loadQuestion
 
 	$.fn.quizbox.answerQuestion = function(answer)
