@@ -5,12 +5,12 @@ display:none;
 }
 
 div#quiz_overlay {
+	background-color: #333;
+	left: 0;
 	position:absolute;
 	top: 0;
-	left: 0;
-	z-index: 90;
 	width: 100%;
-	background-color: #333;
+	z-index: 80;
 }
 
 div#quiz_loading {
@@ -20,7 +20,7 @@ div#quiz_loading {
 	cursor: pointer;
 	display: none;
 	overflow: hidden;
-	background: transparent;
+	background: transparent url(img/quiz_progress.png) no-repeat;
 	z-index: 100;
 }
 
@@ -35,6 +35,7 @@ div#quiz_loading div {
 
 div#quiz_close {
 	position: absolute;
+	display:	block;
 	top: -12px;
 	right: -12px;
 	height: 30px;
@@ -42,25 +43,12 @@ div#quiz_close {
 	background: transparent url(img/quiz_closebox.png) ;
 	cursor: pointer;
 	z-index: 100;
-	display: none;
-}
-
-div#quiz_content {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height:100%;
-	padding: 0; 
-	margin:0px;
-	z-index: 96;
 }
 
 #quiz_frame {
 	position: relative;
 	width: 100%;
 	height: 100%;
-	display: none;
 }
 
 img#quiz_img {
@@ -75,17 +63,7 @@ img#quiz_img {
 	z-index: 92;
 }
 
-div#quiz_title {
-	position: absolute;
-	top:341px;
-	left: 0;
-	width: auto;
-	z-index: 100;
-	display: none;
-	float:left;
-/*	margin-left:7px;  */
 
-}
 .answer div:hover {
 	color: #DDDDDD;
 }
@@ -115,30 +93,33 @@ text-align:center;
 	width:60px;
 }
 
-.timer_wrapper{
-height:10px;
-margin:-10px 0 8px 2px;
-width:99%;
--moz-border-bottom-colors:  #777 #888 #999 #aaa #bbb #ccc;
--moz-border-top-colors:     #777 #888 #999 #aaa #bbb #ccc;
--moz-border-left-colors:    #777 #888 #999 #aaa #bbb #ccc;
--moz-border-right-colors:   #777 #888 #999 #aaa #bbb #ccc;
-border:3x solid #DDDDDD;
-background:#EEEAF8 none repeat scroll 0 0;
--moz-border-radius: 15px;
--webkit-border-radius: 15px;
-padding:1px;
+#quiz_wrap
+{
+	position:	absolute;
+	z-index:	101;
+}
 
+.timer_wrapper{
+	height:10px;
+	margin:-10px 0 8px 2px;
+	width:99%;
+	-moz-border-bottom-colors:  #777 #888 #999 #aaa #bbb #ccc;
+	-moz-border-top-colors:     #777 #888 #999 #aaa #bbb #ccc;
+	-moz-border-left-colors:    #777 #888 #999 #aaa #bbb #ccc;
+	-moz-border-right-colors:   #777 #888 #999 #aaa #bbb #ccc;
+	border:3x solid #DDDDDD;
+	background:#EEEAF8 none repeat scroll 0 0;
+	-moz-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	padding:1px;
 }
 
 .timer_inner
 {
 	background-color:	#8a41c6;
-	height:	100%;
 	position:	relative;
-	width:	100%;
 	-moz-border-radius: 15px;
--webkit-border-radius: 15px;
+	-webkit-border-radius: 15px;
 }
 
 div#quiz_title div#skiptext {
@@ -216,29 +197,25 @@ td#quiz_pink_right {
 margin-bottom: -10px;
 }
 
-div#quiz_outer {
+div#quiz_outer
+{
 	position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 90;
-    padding: 18px 18px 58px 18px;
-    margin: 0;
-    overflow: visible;
-    background: transparent;
-    display: none;
-    height: 680px;
-    width: 525px;
+	top: 0;
+	left: 0;
+	z-index: 90;
+	padding: 18px 18px 58px 18px;
+	margin: 0;
+	overflow: visible;
+	background: transparent;
+	height: 100%;
 }
 
 div#quiz_inner {
 	position: relative;
-	width:100%;
-	height:100%;
 	border:8px solid #DDDDDD;
 	background: #FFF;
 	-moz-border-radius: 10px;
--webkit-border-radius: 10px;
-
+	-webkit-border-radius: 10px;
 }
 
 a#quiz_left, a#quiz_right {
@@ -277,7 +254,6 @@ a#quiz_right:hover {
 }
 
 div#quiz_bg {
-	display: none;
 }
 	
 div.quiz_bg {
@@ -370,11 +346,13 @@ margin-bottom: 0px;
 margin-top:15px;
 }
 
-.answer div:hover{
+.answer div:hover
+{
 	color: #DDDDDD;
 }
 
-#quiz_title a:hover{
+#quiz_title a:hover
+{
 	color: #DDDDDD;
 }
 
@@ -385,11 +363,9 @@ margin-top:15px;
 
 
 #quiz_intro{
-display: none;
 }
 
 #quiz_instructions{
-display: none;
 }
 
 
@@ -408,7 +384,50 @@ font-size:13px;
 }
 
 td#choose_quiz{
-width:33px;
+	width:33px;
 }
 
 
+
+#plopQuizLogo
+{
+	display:	none;
+}
+
+#quiz_content {
+	border:	3px solid #DDDDDD;
+	margin:	4px;
+	padding:	4px;
+	z-index: 96;
+	-moz-border-radius:	3px;
+}
+
+#quiz_title {
+	border:	2px solid #DDDDDD;
+	margin:	4px;
+	-moz-border-radius:	3px;
+}
+
+#quiz_subtitle
+{
+	font-weight:	bold;
+	font-size:	10pt;
+	text-align:	center;
+}
+
+.button
+{
+	border:		2px solid #22a6f0;
+	cursor:		pointer,
+	display:	none;
+	min-height:	20px;
+	min-width:	30px;
+}
+
+#quiz_blank
+{
+	background:#FFFFD1 none repeat scroll 0 0;
+	border:1px solid #E2C922;
+	font-weight:bold;
+	margin:0 5px;
+}
