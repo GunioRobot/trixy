@@ -364,10 +364,11 @@ margin-top:-1px;
 }
 
 #continue{
-font-variant: normal; 
-margin-left: 150px; 
-margin-bottom: 0px; 
-margin-top:15px;
+float:right;
+font-variant:normal;
+margin-bottom:0;
+margin-right:40px;
+margin-top:-40px;
 }
 
 .answer div:hover{

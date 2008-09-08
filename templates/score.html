@@ -13,8 +13,12 @@
 
 <link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/score.css"/>
 <link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quizframe.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="/static/stylesheets/quiz.css"/>
 <title>Plopquiz Score Report </title>
 
+<script type="text/javascript" src="/static/scripts/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/static/scripts/homepage.js"></script>
+<script type="text/javascript" src="/static/scripts/json2min.js"></script>
 </head>
 
 
@@ -39,7 +43,7 @@
 <p class="quiz_distributor"><b>Score Report</b></p> 
 
 
-<div class="quiz_selection" style="height:195px; background: #EDF2F8 none repeat scroll 0 0; width: 325px;">
+<div class="quiz_selection" style="height:245px; background: #EDF2F8 none repeat scroll 0 0; width: 325px;">
 
 
 
@@ -59,10 +63,27 @@
 
 <div class="score_text">
 {% if passed  %}
-You have won! Yay for you! <!-- TODO: Change This -->
+Impressive Score.
 {% else %}
-You cannot fail until you give up. <!-- TODO: Change This -->
+Thanks For Your Time
 {% endif %}
+</div>
+
+
+
+
+        <form action"#" id="signup" name="signup" style="font-size:.8em;">
+        
+        Leave us your e-mail  so we can get in touch. 
+        	
+        	<div id="add_success" style="display:none;"> You've been added to our list. </div>
+        	
+            <input  type="text" name="email" value="early@bird.com" id="email" onFocus="if (this.value == this.defaultValue) { this.value = ''; }"  style="margin: 20px 0px 0px -140px;" />
+            <a id="continue" onclick="ListAdd(signup.email.value);" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main" style="padding:0px;"><div class="arrow" style="margin-bottom:-3px;"><img src="/static/stylesheets/img/pinkarrow.png" /></div><div class="skipitem" id="skiptext"></div></td><td id="quiz_pink_right"></td></tr></table></a>
+           
+   </form>
+
+
 </div>
 
 

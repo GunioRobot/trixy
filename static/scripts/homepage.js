@@ -93,7 +93,7 @@ InstallFunction(server, 'Init');
 
 
 function ListAdd(email) {
-	server.Init(email, onAddSuccess);
+	server.List(email, onAddSuccess);
 
 	
 	// There should be a callback for success

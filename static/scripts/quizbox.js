@@ -526,7 +526,7 @@ $.fn.quizbox = function(settings) {
 
 		 /* append score buttons to iframe */
 		 $('<div id="quiz_score"  class="buttons"></div>').appendTo('#quiz_title');
-		 $('<a id="continue" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow" style="margin-left:12px;"><img src="/static/stylesheets/img/pinkarrow.png" /></div><div class="skipitem" id="skiptext">Continue</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_score');
+	/*	 $('<a id="continue" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow" style="margin-left:12px;"><img src="/static/stylesheets/img/pinkarrow.png" /></div><div class="skipitem" id="skiptext">Continue</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_score'); */
 
 
 		 /* append intro buttons to iframe */

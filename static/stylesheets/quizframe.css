@@ -282,7 +282,7 @@ border-color:#DDDDDD;
 border-style:solid;
 border-width:12px 8px;
 float:left;
-height:170px;
+height:220px;
 margin-left:4px;
 overflow:hidden;
 width:300px;
@@ -303,6 +303,9 @@ overflow:hidden;
 div.score_text{
 font-size:1.3em;
 font-variant:small-caps;
-margin:120px 0 0 22px;
+margin:110px 0 0 22px;
 width:240px;
 }
+
+
+
