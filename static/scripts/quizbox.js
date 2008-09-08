@@ -286,9 +286,11 @@ $.fn.quizbox = function(settings) {
  
 
 		 if (opts.itemArray[opts.itemNum].item_type == "instructions") {
-		     console.log('whatup');
+		     
 		 var hover_count = 0
-		 var example1 = $('div#example_1', window.frames[0].document);
+		 var blankspan = $('.blank', window.frames[0].document);
+		 var example1 = $('#example_1', window.frames[0].document);
+		 if (example1) { console.info(example1); }
 		 var example2 = $('div#example_2', window.frames[0].document);
 		 
 		 $("a#answer1").hover(function(){
@@ -298,9 +300,10 @@ $.fn.quizbox = function(settings) {
 		            $('div#example_2').show();
 		            
 		            example1.hide();
+		            blankspan.hide();
 		            example2.show();
 		            
-		            console.log('YOO');
+		            
 		            }
     
 		    }, function() {
@@ -317,7 +320,7 @@ $.fn.quizbox = function(settings) {
 		            
 		            example1.hide();
 		            example2.show();
-		            console.log('YOO');
+		            
 		            }
 		    }, function() {
 
@@ -361,7 +364,7 @@ $.fn.quizbox = function(settings) {
 				easing:	'linear',
 				complete:	function()
 				{
-					$('#skip').click(); /* not the same as skip - TODO format ajax call for timeout */
+					/* $('#skip').click();  not the same as skip - TODO format ajax call for timeout */
 					$('#timer_bar').css('width', '100%');
 				}
 			});
@@ -375,7 +378,7 @@ $.fn.quizbox = function(settings) {
 				easing:	'linear',
 				complete:	function()
 				{
-					$('#skip').click(); /* not the same as skip - TODO format ajax call for timeout */
+					/*  $('#skip').click(); /* not the same as skip - TODO format ajax call for timeout */
 					$('#timer_bar_instruction').css('width', '100%');
 				}
 			});
