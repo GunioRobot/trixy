@@ -72,61 +72,6 @@
 		$('.quizstart').click($.fn.quizbox.init);
 	});
 
-	var quizTimer = $.fn.quizbox.timer =
-	{
-		marks: Array(),
-		timeoutCb: function() { return this },
-		timeout: Number(),
-		reset: function()
-		{
-			this.quizStartTime = new Date();
-			this.currentTime = new Date();
-			return this;
-		},
-		start: function()
-		{
-			var self = this;
-			this.reset();
-			this.timerId = setInterval(function()
-			{
-				self.currentTime = new Date();
-				if((self.currentTime - self.quizStartTime) > self.timeout)
-				{
-					self.timeoutCb().stop().reset();
-				}
-			},13);
-			return this;
-		},
-		stop: function()
-		{
-			clearInterval(this.timerId);
-			return this;
-		},
-		mark: function()
-		{
-			// not sure if this will be useful......
-			this.marks.push(new Data());
-			return this;
-		},
-		timeoutAt: function(t, cb)
-		{
-			var self = this;
-
-			this.timeout = t;
-			this.timeoutCb = function()
-			{
-				cb();
-				return self;
-			}
-			return this;
-		}
-	};
-
-	$.event.add(quizTimer, 'quizloaded', quizTimer.reset);
-	$.event.add(quizTimer, 'quizstarted', quizTimer.start);
-	$.event.add(quizTimer, 'quizfinnished', quizTimer.stop);
-	$.event.add(quizTimer, 'quizclosed', quizTimer.stop);
-
 	$.fn.quizbox.fillInBlank = function(question,spaces)
 	{
 		var blank = $('<span id="quiz_blank"></span>');
@@ -182,8 +127,8 @@
 						{
 							$(this)
 								.css({
-									left: (($(window).width() / 2) - ($('#quiz_outer', this).width() / 2)),
-									top: (($(window).height() / 2) - ($('#quiz_outer', this).height() / 2))
+									left: (($(window).width() / 4) - ($('#quiz_outer', this).width() / 2)),
+									top: (($(window).height() / 4) - ($('#quiz_outer', this).height() / 2))
 								});
 						})
 						.appendTo(document.body)
@@ -204,10 +149,38 @@
 
 					$('#quiz_content').append('');
 
-					$.event.trigger('quizloaded');
-					$.event.trigger('quizreposition');
+
+					$('#quiz_timer_bar').bind('quizstarted', function()
+					{
+					console.log('quizloaded?');
+						var self = this;
+						$(this).animate({
+							width: 0,
+						},
+						{
+							duration: 8000,
+							easing: 'linear',
+							complete: function()
+							{
+								$(self).width('100%');
+								$.fn.quizbox.answerQuestion('skip');
+							}
+						});
+					})
+					.bind('questionanswered', function()
+					{
+						if($(self).is(':animated'))
+							$(self).width('99%').stop();
+					})
+					.bind('quizclose', function()
+					{
+						$(this).stop();
+					});
 
 					$.fn.quizbox.loadQuestion($.fn.quizbox.defaults.questionCounter);	
+
+					$.event.trigger('quizloaded');
+					$.event.trigger('quizreposition');
 				}
 			});
 		else
