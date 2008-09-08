@@ -19,8 +19,20 @@
 <script type="text/javascript" src="/static/scripts/jquery-1.2.6.min.js"></script>
 <script type="text/javascript" src="/static/scripts/json2min.js"></script>
 
-<script>
+<script type="text/javascript">
 
+$(document).ready(function() {
+    /* TODO this doesn't work... */
+	 $(".answer").hover(function(){
+				 $(this).css({'font-variant': 'small-caps'});
+
+				 },function(){
+				 $(this).css({'font-variant': 'normal'});
+				 });
+				 
+             });
+				 
+				 
 
      /* =========== */
 /* = Ajax Requests = */
@@ -101,7 +113,9 @@ function ListAdd(email) {
 
 function onAddSuccess(response)
 {
+    $('#signup').hide('fast');
     $('div#add_success').show('fast');
+    
 }
 </script>
 </head>
@@ -154,17 +168,26 @@ Thanks For Your Time
 {% endif %}
 </div>
 
+<!-- TODO: Add Continue Button, with close window binding. --> 
 
+<div id="add_success" style="display:none;"> 
 
+<div class="add_confirm">You've been added to our list. </div>
+
+   <a id="continue_pink" onclick="console.log('close all open windows');" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main" style="padding:0px;">
+   <div class="skipitem" id="skiptext">Continue</div></td><td id="quiz_pink_right"></td></tr></table></a>
+         
+</div>
 
         <form action"#" id="signup" name="signup" style="font-size:.8em;">
         
-        Leave us your e-mail  so we can get in touch. 
+       <div class="contact_prompt" >Where should we contact you?</div> 
         	
-        	<div id="add_success" style="display:none;"> You've been added to our list. </div>
         	
-            <input  type="text" name="email" value="early@bird.com" id="email" onFocus="if (this.value == this.defaultValue) { this.value = ''; }"  style="margin: 20px 0px 0px -140px;" />
-            <a id="continue" onclick="ListAdd(signup.email.value);" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main" style="padding:0px;"><div class="arrow" style="margin-bottom:-3px;"><img src="/static/stylesheets/img/pinkarrow.png" /></div><div class="skipitem" id="skiptext"></div></td><td id="quiz_pink_right"></td></tr></table></a>
+        	
+            <input  class="score_email" type="text" name="email" value="early@bird.com" id="email" onFocus="if (this.value == this.defaultValue) { this.value = ''; }"  />
+            <a id="continue" onclick="ListAdd(signup.email.value);" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_purple_left"></td><td id="quiz_purple_main" style="padding:0px; min-width:0px;"><div class="arrow" style="margin-bottom:-3px;"></div>
+            <div class="skipitem" style="font-size: 1em;" id="skiptext">Submit</div></td><td id="quiz_purple_right"></td></tr></table></a>
            
    </form>
 

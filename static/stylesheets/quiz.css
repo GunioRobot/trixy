@@ -91,9 +91,9 @@ div#quiz_title {
 }
 
 div#quiz_title table {
-	/* margin:1pt -35px; */
 	font-variant: inherit;
 }
+
 
 div#quiz_title div.answertext {
 
@@ -368,7 +368,14 @@ float:right;
 font-variant:normal;
 margin-bottom:0;
 margin-right:40px;
-margin-top:-40px;
+margin-top:10px;
+}
+#continue_pink{
+float:right;
+float:right;
+font-variant:normal;
+margin-right:20px;
+margin-top:-24px;
 }
 
 .answer div:hover{
