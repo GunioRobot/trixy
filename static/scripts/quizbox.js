@@ -16,7 +16,7 @@
 
 	$.fn.quizbox = function(settings)
 	{
-		// disabled for know --Morgan
+		// disabled for now --Morgan
 		return;
 		opts.settings = $.extend({}, $.fn.quizbox.defaults, settings);
 
@@ -72,9 +72,71 @@
 		$('.quizstart').click($.fn.quizbox.init);
 	});
 
-	$.fn.quizbox.fillInBlank = function(question)
+	var quizTimer = $.fn.quizbox.timer =
 	{
-		return question.replace(/\$BLANK\$/, '<span id="quiz_blank">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>');
+		marks: Array(),
+		timeoutCb: function() { return this },
+		timeout: Number(),
+		reset: function()
+		{
+			this.quizStartTime = new Date();
+			this.currentTime = new Date();
+			return this;
+		},
+		start: function()
+		{
+			var self = this;
+			this.reset();
+			this.timerId = setInterval(function()
+			{
+				self.currentTime = new Date();
+				if((self.currentTime - self.quizStartTime) > self.timeout)
+				{
+					self.timeoutCb().stop().reset();
+				}
+			},13);
+			return this;
+		},
+		stop: function()
+		{
+			clearInterval(this.timerId);
+			return this;
+		},
+		mark: function()
+		{
+			// not sure if this will be useful......
+			this.marks.push(new Data());
+			return this;
+		},
+		timeoutAt: function(t, cb)
+		{
+			var self = this;
+
+			this.timeout = t;
+			this.timeoutCb = function()
+			{
+				cb();
+				return self;
+			}
+			return this;
+		}
+	};
+
+	$.event.add(quizTimer, 'quizloaded', quizTimer.reset);
+	$.event.add(quizTimer, 'quizstarted', quizTimer.start);
+	$.event.add(quizTimer, 'quizfinnished', quizTimer.stop);
+	$.event.add(quizTimer, 'quizclosed', quizTimer.stop);
+
+	$.fn.quizbox.fillInBlank = function(question,spaces)
+	{
+		var blank = $('<span id="quiz_blank"></span>');
+		for(;spaces>0;spaces--)
+			blank.append('&nbsp;');
+
+		console.log(blank.text());
+		blank.data('blankSpace', blank.html());
+		
+		return question.replace(/$BLANK$/, blank[0]);
 	};
 
 	$.fn.quizbox.init = function(el, o)
@@ -138,6 +200,8 @@
 
 					$.fn.quizbox.quizLoaded = true;
 
+					$('#skip').click($.fn.quizbox.answerQuestion);
+
 					$('#quiz_content').append('');
 
 					$.event.trigger('quizloaded');
@@ -148,7 +212,6 @@
 			});
 		else
 		{
-			$.event.trigger('quizloading');
 			$('#quiz_wrapper').show();
 			$.event.trigger('quizloaded');
 		}
@@ -172,9 +235,7 @@
 		if(qi.subtitle)
 			$('#quiz_subtitle').html(qi.subtitle);
 
-		if(qi.question)
-			$('#quiz_question').html($.fn.quizbox.fillInBlank(qi.question));
-
+		var blankWidth = 0, blankSpace;
 		// buttons look kinda crappy, they need to be build in a better
 		// liqiud layout, they keep dropping down, and with only two.
 		$('#quiz_buttonbox .button')
@@ -199,6 +260,10 @@
 									$.fn.quizbox.answerQuestion($(this).text());
 								};
 						})());
+
+				var thisWidth;
+				blankWidth = (blankWidth > (thisWidth = $(this).width())) ? blankWidth : thisWidth;
+				blankSpaces = blankWidth / 7;
 			})
 			.hover(function()
 			{
@@ -206,13 +271,32 @@
 			},
 			function()
 			{
-				$('#quiz_blank').html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;");
+				$('#quiz_blank').html($('#quiz_blank').data('blankSpace'));
 			});
+		
+		if(qi.question)
+			$('#quiz_question')
+				.html(qi.question);
+
+			$('#quiz_blank')
+				.html((function()
+				{
+					blankSpace = "";
+					for(var i = 0; i<(blankWidth/7); i++)
+						blankSpace += "&nbsp;";
+					return blankSpace;
+				})())
+				.data('blankSpace', blankSpace);
+
+
+		$.event.trigger('quizstarted');
 	}; // $.fn.quizbox.loadQuestion
 
 	$.fn.quizbox.answerQuestion = function(answer)
 	{
 		$.fn.quizbox.loadQuestion(++$.fn.quizbox.defaults.questionCounter);
+
+		$.event.trigger('questionanswered');
 	}; // $.fn.quizbox.answerQuestion
 
 $.fn.init.start_old = function()

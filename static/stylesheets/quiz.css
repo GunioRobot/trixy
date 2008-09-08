@@ -122,11 +122,6 @@ text-align:center;
 	-webkit-border-radius: 15px;
 }
 
-div#quiz_title div#skiptext {
-font-size:12px;
-margin-top:15px;
-}
-
 
 td#quiz_purple_left {
 	height: 50px;
@@ -334,11 +329,6 @@ font-variant:normal;
 
 }
 
-#skip{
-margin-left:10px;
-margin-top:-1px;
-}
-
 #continue{
 font-variant: normal; 
 margin-left: 150px; 
@@ -388,6 +378,22 @@ td#choose_quiz{
 }
 
 
+#skip
+{
+	background-color:	#f022e6;
+	background-image:	url(img/pinkarrow.png);
+	background-position:	99% 75%;
+	background-repeat:	no-repeat;
+	cursor:	pointer;
+	font-weight:	bold;
+	margin-left:	4px;
+	margin-right:	4px;
+	margin-top:	4px;
+	margin-bottom:	2px;
+	padding-right:	26px;
+	text-align:	right;
+	-moz-border-radius:	10px;
+}
 
 #plopQuizLogo
 {
@@ -418,10 +424,11 @@ td#choose_quiz{
 .button
 {
 	border:		2px solid #22a6f0;
-	cursor:		pointer,
+	cursor:		pointer;
 	display:	none;
 	min-height:	20px;
 	min-width:	30px;
+	text-align:	center;
 }
 
 #quiz_blank
@@ -430,4 +437,14 @@ td#choose_quiz{
 	border:1px solid #E2C922;
 	font-weight:bold;
 	margin:0 5px;
+}
+
+#quiz_timer_bar
+{
+	background:	#aa33aa none repeat scroll 0 0;
+	height:	6px;
+	margin-bottom:	6px;
+	margin-left:	6px;
+	margin-right:	6px;
+	-moz-border-radius:	5px;
 }
