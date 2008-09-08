@@ -93,9 +93,31 @@ class RPCMethods(webapp.RequestHandler):
         result.delete()
 
 
+  def List(self, *args):
+  
+    logging.debug('Posting List Entry')    
+    list_entry = List()    
+    list_entry.email = str(args[0])
+    list_entry.put()
 
 
 
+class PQHome(webapp.RequestHandler):
+  #Load Plopquiz Homepage 
+
+  def get(self):
+
+    template_values = {
+
+
+                                                    
+      }
+     
+      
+    path = tpl_path('homepage.html')
+    self.response.out.write(template.render(path, template_values))
+    
+    
 class PQIntro(webapp.RequestHandler):
   #Put something here  
 

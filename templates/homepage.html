@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Plop Quiz</title>
+<link rel="stylesheet" type="text/css" charset="utf-8" href="/static/stylesheets/homepage.css" />
+<!--[if lte IE 6]>
+<link href="ie6styles.css" rel="stylesheet" type="text/css" />
+<![endif]-->
+<style type="text/css">
+#land, #clouds-far, #clouds-near {
+	background-position: 0px 0px;
+}
+</style>
+
+<script type="text/javascript" src="/static/scripts/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/static/scripts/parallax.js"></script>
+<script type="text/javascript" src="/static/scripts/homepage.js"></script>
+<script type="text/javascript" src="/static/scripts/json2min.js"></script>
+
+
+
+
+</head>
+
+<body>
+<div id="viewport">
+    <div class="mid layer">
+    	<div id="clouds-far"></div>
+	</div>
+	<div class="far layer">
+    	<div id="land"></div>
+    </div>
+    <div class="near layer">
+
+		<div id="clouds-near"></div>
+    </div>
+</div>
+<div id="sitelet">
+	<div id="logo">
+    	<img src="/static/stylesheets/homepage/pq_logo.png" alt="" />
+    </div>
+    <div id="content">
+        <h2>Plopquiz is currently in closed beta testing.</h2>
+
+        <form action"#" id="signup">
+        	
+        	<div id="add_success" style="display:none;"> You're be added to our list. </div>
+        	
+            <input type="text" name="early@bird.com" value="open" id="email" onFocus="if (this.value == this.defaultValue) { this.value = ''; }"  />
+            <input type="button" value="sign me up for an invite!" onclick="ListAdd(email.value);" style="font-size:1em;"/> 
+        </form>
+    </div>
+</div>
+<div id="flyer">
+</div>
+</body>
+</html>

@@ -40,6 +40,8 @@ def main():
                                          ViewAd), 
                                         ('/quiz/?',
                                          QuizItem),                                         
+                                        ('/home/?',
+                                         PQHome),  
                                         ],
                                        debug=True)
   wsgiref.handlers.CGIHandler().run(application)

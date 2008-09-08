@@ -16,3 +16,9 @@ class Score(db.Model):
   correct_answer = db.StringProperty()
 
 
+class List(db.Model):
+  # Beta List
+  email = db.StringProperty()
+  date = db.DateTimeProperty(auto_now_add=True)
+
+
