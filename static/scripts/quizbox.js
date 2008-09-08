@@ -286,46 +286,40 @@ $.fn.quizbox = function(settings) {
  
 
 		 if (opts.itemArray[opts.itemNum].item_type == "instructions") {
-		     
-		 var hover_count = 0
-		 var blankspan = $('.blank', window.frames[0].document);
-		 var example1 = $('#example_1', window.frames[0].document);
-		 if (example1) { console.info(example1); }
-		 var example2 = $('div#example_2', window.frames[0].document);
+			$('#answer1,#answer2').mouseover(function(e)
+			{
+				$(this).not('.hovered').addClass('hovered');
+				if($(this).parent().find('.hovered').length > 1 && $('#example_2', window.frames[0].document).is(':hidden'))
+				{
+					$('#example_1,#example_2', window.frames[0].document).toggle();
+				}
+			});
+/*
+			 var hover_count = 0;
 		 
-		 $("a#answer1").hover(function(){
+		 $("a#answer1").mouseover(function(){
 		    hover_count += 1;
+		    console.log(hover_count);
                     if (hover_count > 1) {
-		            $('div#example_1').hide();
-		            $('div#example_2').show();
-		            
-		            example1.hide();
-		            blankspan.hide();
-		            example2.show();
-		            
-		            
-		            }
+		            $('div#example_1', window.frames[0].document).hide();
+		            $('div#example_2', window.frames[0].document).show();
+			    $('.blank', window.frames[0].document).hide();
+		    }
     
-		    }, function() {
-
          });
          
   
          
-          $("a#answer2").hover(function(){
+          $("a#answer2").mouseover(function(){
 		    hover_count += 1;
+		    console.log(hover_count);
                     if (hover_count > 1) {
-		            $('div#example_1').hide();
-		            $('div#example_2').show();
-		            
-		            example1.hide();
-		            example2.show();
-		            
-		            }
-		    }, function() {
-
+		            $('div#example_1', window.frames[0].document).hide();
+		            $('div#example_2', window.frames[0].document).show();
+			    $('.blank', window.frames[0].document).hide();
+		    }
          });
-		 
+		*/ 
      }
 
 
