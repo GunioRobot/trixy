@@ -439,6 +439,9 @@ $.fn.quizbox = function(settings) {
  $.fn.quizbox.close = function() {
 	 if (opts.animating) return false;
 
+	 // kill animation to window does not reopen on 'skip' --Morgan
+	 $('.timer_bar').stop();
+
 	 $(imgPreloader).unbind('load');
 	 $(document).unbind("keydown");
 
