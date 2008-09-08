@@ -327,6 +327,36 @@ $.fn.quizbox = function(settings) {
  /* = Update Button Display = */
  /* =========== */
  
+	function startTimer()
+	{
+		 if($.fn.quizbox._t)
+		 {
+			 clearTimeout($.fn.quizbox._t);
+			 $('.timer_bar').stop().css('width', '100%');
+		 }
+		 // Start timer --Morgan
+		 $.fn.quizbox._t = setTimeout(function() {
+			// ONE ID PER PAGE! --Morgan
+			$('.timer_bar').animate(
+			{
+				width:	0
+			},
+			{
+				duration:	8000,
+				easing:	'linear',
+				complete:	function()
+				{
+					$('#skip').click();  //not the same as skip - TODO format ajax call for timeout /
+					$('.timer_bar').css('width', '100%');
+					$.fn.quizbox._t = false;
+				}
+			});
+		 },1000);
+	};
+		 
+		 
+		 
+		 
  
  
 	 /* Fill in titles for answer keys - redundant! make this more robust before something blows up*/
@@ -345,47 +375,7 @@ $.fn.quizbox = function(settings) {
 		 $('#quiz_answers div#answer2').html(opts.itemArray[opts.itemNum].answer2);
 		 $('#quiz_answers div#answer3').html(opts.itemArray[opts.itemNum].answer3);
 		 $('#quiz_answers div.arrow').html('<img src="/static/stylesheets/img/pinkarrow.png"/>');
-
-		 // Start timer --Morgan
-		 setTimeout(function() {
-			// ONE ID PER PAGE! --Morgan
-			$('#timer_bar').animate(
-			{
-				width:	0
-			},
-			{
-				duration:	8000,
-				easing:	'linear',
-				complete:	function()
-				{
-					/* $('#skip').click();  not the same as skip - TODO format ajax call for timeout */
-					$('#timer_bar').css('width', '100%');
-				}
-			});
-			
-			         $('#timer_bar_instruction').animate(
-			{
-				width:	0
-			},
-			{
-				duration:	8000,
-				easing:	'linear',
-				complete:	function()
-				{
-					/*  $('#skip').click(); /* not the same as skip - TODO format ajax call for timeout */
-					$('#timer_bar_instruction').css('width', '100%');
-				}
-			});
-
-
-			
-		 },1000);
-
-       
-		 
-		 
-		 
-		 
+		 startTimer();
 	 }else if (opts.itemArray[opts.itemNum].item_type == "intro") {
 		 /* hide answers and show hidden intro choices */
 		 $('#quiz_title').show();
@@ -405,6 +395,7 @@ $.fn.quizbox = function(settings) {
 		 $('#quiz_title div#quiz_instructions2').show();  
 		 $('#quiz_instructions2 div#answer1').html(opts.itemArray[opts.itemNum].answer1);     
 		 $('#quiz_instructions2 div#answer2').html(opts.itemArray[opts.itemNum].answer2);
+		 startTimer();
 	 }else if (opts.itemArray[opts.itemNum].item_type == "score") {
 		 $('#quiz_title').show();
 		 $('#quiz_title div.buttons').hide();
@@ -541,7 +532,7 @@ $.fn.quizbox = function(settings) {
 
 			 $('<div id="quiz_instructions2" class="buttons" style=" margin-top:7px"></div>').appendTo('#quiz_title');
 			 //Arg, this has been getting animated while not visible, one ID per page!
-			 $('<div class="timer_wrapper" id="quiz_timer_instruction"><div id="timer_bar_instruction" class="timer_inner"></div></div>').appendTo('#quiz_instructions2');
+			 $('<div class="timer_wrapper" id="quiz_timer_instruction"><div class="timer_bar timer_inner"></div></div>').appendTo('#quiz_instructions2');
 			$('<a id="answer1" onmouseover="" class="answer"  href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
 			 $('<a id="answer2" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
 			 $('<a id="skip" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow"><img src="/static/stylesheets/img/pinkarrow.png" /></div><div class="skipitem" id="skiptext">Skip</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
@@ -550,7 +541,7 @@ $.fn.quizbox = function(settings) {
 
 		 /* append quiz buttons to iframe */
 		 $('<div id="quiz_answers" class="buttons"></div>').appendTo('#quiz_title');
-		 $('<div class="timer_wrapper" id="quiz_timer"><div id="timer_bar" class="timer_inner"></div></div>').appendTo('#quiz_answers');
+		 $('<div class="timer_wrapper" id="quiz_timer"><div class="timer_bar timer_inner"></div></div>').appendTo('#quiz_answers');
 
 		 $('<a id="answer1" onmouseover="" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_answers');
 		 $('<a id="answer2" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main"><div class="answertext" id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_answers');
