@@ -260,7 +260,12 @@ width:103%;
 
 }
 
-
+div.begin_quiz{
+font-size:1.3em;
+line-height:1.2em;
+width:99%;
+margin-top:-7px;
+}
 
 
 /* =========== */
@@ -302,7 +307,6 @@ overflow:hidden;
 }
 div.score_text{
 font-size:1.3em;
-font-variant:small-caps;
 margin:110px 0 0 22px;
 width:240px;
 }

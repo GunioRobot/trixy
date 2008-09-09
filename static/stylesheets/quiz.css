@@ -146,6 +146,11 @@ font-size:12px;
 margin-top:15px;
 }
 
+div#quiz_title div#startquiz {
+font-size:16px;
+margin-top:0px;
+font-weight:bold;
+}
 
 td#quiz_purple_left {
 	height: 50px;

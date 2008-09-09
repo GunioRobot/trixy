@@ -214,6 +214,14 @@ $.fn.quizbox = function(settings) {
 			 'width':	332 + 'px', 
 			 'height':	410 + 'px'	
 		 };
+		 	 }else if (opts.itemArray[opts.itemNum].item_type == "begin_quiz"){
+		 var itemOpts = {
+			 'left':		143 + 'px', 
+			 'top':		0 + 'px', 
+			 'width':	332 + 'px', 
+			 'height':	370 + 'px'	
+		 };
+		 
 	 }else{   
 		 /* during quiz */
 		 var itemOpts = {
@@ -280,9 +288,7 @@ $.fn.quizbox = function(settings) {
 	 $("#quiz_bg,#quiz_close").show();
 	 
 	 
-	  /* =========== */
- /* = Instructions Animations = */
- /* =========== */
+
  
 
 		 if (opts.itemArray[opts.itemNum].item_type == "instructions") {
@@ -352,13 +358,12 @@ $.fn.quizbox = function(settings) {
 	};
 		 
 		 
-		 
-		 
  
  
 	 /* Fill in titles for answer keys - redundant! make this more robust before something blows up*/
 	 if (opts.itemArray[opts.itemNum].item_type == "quiz_item") {
 		 $('#quiz_title').show();
+		 $('#quiz_title div.buttons').hide(); 
 		 $('#quiz_title div#quiz_answers').show();           
 		 $('#quiz_title div#quiz_intro').hide();  
 		 $('#quiz_title div#quiz_instructions').hide();
@@ -411,10 +416,11 @@ $.fn.quizbox = function(settings) {
 		$('#quiz_instructions2')
 			.find('#answer1,#answer2').click(function()
 		{
-				$('#example_1,#example_3', window.frames[0].document).hide();
-				$('#example_2', window.frames[0].document).show();
+				$('#example_1,#example_3', window.frames[0].document).hide('slow');
+				$('#example_2', window.frames[0].document).show('slow');
 				clearTimeout($.fn.quizbox._t);
-				$('.timer_bar').stop(); //.css('width', '100%');
+				 $('.timer_bar').css('width', '100%');
+				 $('.timer_bar').stop();
 
 				// hook up the rest of the buttons
 				$('#quiz_title').find('a').click(function() { $.fn.quizbox.submit_answer(this); });
@@ -423,11 +429,17 @@ $.fn.quizbox = function(settings) {
 		 var timerCb = function()
 		 {
 			$('.timer_bar').css('width', '100%');
-			$('#example_1,#example_2', window.frames[0].document).hide();
-			$('#example_3', window.frames[0].document).show();
+			$('#example_1,#example_2', window.frames[0].document).hide('slow');
+			$('#example_3', window.frames[0].document).show('slow');
 			startTimer(timerCb);
 		 };
 		 startTimer(timerCb);
+		 
+	 }else if (opts.itemArray[opts.itemNum].item_type == "begin_quiz") {
+	     $('#quiz_title').show();
+	     $('#quiz_title div.buttons').hide();
+	     $('#quiz_title div#quiz_begin_quiz').show();
+	     	 
 	 }else if (opts.itemArray[opts.itemNum].item_type == "score") {
 		 $('#quiz_title').show();
 		 $('#quiz_title div.buttons').hide();
@@ -571,6 +583,9 @@ $.fn.quizbox = function(settings) {
 			$('<a id="answer1" onmouseover="" class="answer"  href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr> <td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  id="answer1"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
 			 $('<a id="answer2" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_blue_left"></td><td id="quiz_blue_main" style="min-width:60px;"><div class="answertext"  id="answer2"></div></td><td id="quiz_blue_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
 			 $('<a id="skip" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow"><img src="/static/stylesheets/img/pinkarrow.png" /></div><div class="skipitem" id="skiptext">Skip</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
+
+            $('<div id="quiz_begin_quiz" class="buttons" style=" margin-top:7px"></div>').appendTo('#quiz_title');
+             $('<a id="skip" class="answer" href="#" style="margin-top:-33px; margin-left: 95px"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="skipitem" id="startquiz">Start Quiz</div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_begin_quiz');
 
 
 

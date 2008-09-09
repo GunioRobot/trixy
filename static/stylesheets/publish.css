@@ -122,7 +122,7 @@ h2 {
     font-size: 1.6em;
     font-weight: bold;
     text-decoration: none;
-    letter-spacing: -0.07em;
+    letter-spacing: -0.01em;
 }
 
 .minititle {
@@ -132,7 +132,7 @@ h2 {
 }
 
 #description_title{
-margin: 20px 0px;
+margin: 0px 0px;
 }
 
 h3:hover#description_title{
@@ -154,7 +154,9 @@ text-decoration:underline;
 }
 
 p {
-margin-top:10px;
+font-size:1.2em;
+line-height:1.2em;
+margin-top:10px
 }
 
 .ovr_title {
@@ -167,17 +169,18 @@ margin-top:10px;
 }
 
 .ovr_text {
-    clear: left;
-    padding-top: 20px;
-    line-height: 1.4em;
+clear:left;
+font-size:1.4em;
+line-height:1.4em;
+padding-top:20px;
 }
 
 .ovr_list {
-    float: left;
-    margin-top: 20px;
-    margin-right: 10px;
-    height: 110px;
-    width: 120px;
+float:left;
+height:110px;
+margin-left:320px;
+margin-top:-55px;
+width:120px;
 }
 
 .ovr_apply {
@@ -295,5 +298,10 @@ label {
 }
 
 
+#bookmark{
+margin-left:420px;
+margin-top:-152px;
+width:300px;
+}
 
 
