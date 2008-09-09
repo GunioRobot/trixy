@@ -286,14 +286,6 @@ $.fn.quizbox = function(settings) {
  
 
 		 if (opts.itemArray[opts.itemNum].item_type == "instructions") {
-			$('#answer1,#answer2').mouseover(function(e)
-			{
-				$(this).not('.hovered').addClass('hovered');
-				if($(this).parent().find('.hovered').length > 1 && $('#example_2', window.frames[0].document).is(':hidden'))
-				{
-					$('#example_1,#example_2', window.frames[0].document).toggle();
-				}
-			});
 /*
 			 var hover_count = 0;
 		 
@@ -327,7 +319,7 @@ $.fn.quizbox = function(settings) {
  /* = Update Button Display = */
  /* =========== */
  
-	function startTimer()
+	function startTimer(cb)
 	{
 		 if($.fn.quizbox._t)
 		 {
@@ -336,7 +328,6 @@ $.fn.quizbox = function(settings) {
 		 }
 		 // Start timer --Morgan
 		 $.fn.quizbox._t = setTimeout(function() {
-			// ONE ID PER PAGE! --Morgan
 			$('.timer_bar').animate(
 			{
 				width:	0
@@ -344,12 +335,18 @@ $.fn.quizbox = function(settings) {
 			{
 				duration:	8000,
 				easing:	'linear',
-				complete:	function()
+				complete:	(function()
 				{
-					$('#skip').click();  //not the same as skip - TODO format ajax call for timeout /
-					$('.timer_bar').css('width', '100%');
-					$.fn.quizbox._t = false;
-				}
+					if(!cb)
+						return function()
+						{
+							$('#skip').click();  //not the same as skip - TODO format ajax call for timeout /
+							$('.timer_bar').css('width', '100%');
+							$.fn.quizbox._t = false;
+						};
+					
+					return cb;
+				})()
 			});
 		 },1000);
 	};
@@ -384,18 +381,53 @@ $.fn.quizbox = function(settings) {
 		 $('#quiz_intro div#take_quiz').html(opts.itemArray[opts.itemNum].take_quiz);  
 		 $('#quiz_intro div#choose_quiz').html(opts.itemArray[opts.itemNum].choose_quiz);
 	 }else if (opts.itemArray[opts.itemNum].item_type == "instructions") {
-		 $('#quiz_title').show();
-		 $('#quiz_title div.buttons').hide();   
-		 $('#quiz_title div#quiz_instructions').show();  
-		 $('#quiz_instructions div#answer1').html(opts.itemArray[opts.itemNum].answer1);     
-		 $('#quiz_instructions div#answer2').html(opts.itemArray[opts.itemNum].answer2);
+		$('#example_1', window.frames[0].document).show();
+		$('#example_2', window.frames[0].document).hide();
+		$('#quiz_title').show();
+		$('#quiz_title div.buttons').hide();   
+		$('#quiz_title div#quiz_instructions').show();  
+		$('#quiz_instructions div#answer1').html(opts.itemArray[opts.itemNum].answer1);     
+		$('#quiz_instructions div#answer2').html(opts.itemArray[opts.itemNum].answer2);
+		$('#answer1,#answer2').mouseover(function(e)
+		{
+			$(this).not('.hovered').addClass('hovered');
+			if($(this).parent().find('.hovered').length > 1 && $('#example_2', window.frames[0].document).is(':hidden'))
+			{
+				$('#example_1,#example_2', window.frames[0].document).toggle('slow');
+				
+				$('#quiz_instructions').find('#answer1,#answer2').click(function() {
+					$.fn.quizbox.submit_answer(this);
+				});
+			}
+		});
 	 }else if (opts.itemArray[opts.itemNum].item_type == "instructions2") {
-		 $('#quiz_title').show();
-		 $('#quiz_title div.buttons').hide();
-		 $('#quiz_title div#quiz_instructions2').show();  
-		 $('#quiz_instructions2 div#answer1').html(opts.itemArray[opts.itemNum].answer1);     
-		 $('#quiz_instructions2 div#answer2').html(opts.itemArray[opts.itemNum].answer2);
-		 startTimer();
+		$('#example_1', window.frames[0].document).show();
+		$('#example_2,#example_3', window.frames[0].document).hide();
+		$('#quiz_title').show();
+		$('#quiz_title div.buttons').hide();
+		$('#quiz_title div#quiz_instructions2').show();  
+		$('#quiz_instructions2 div#answer1').html(opts.itemArray[opts.itemNum].answer1);     
+		$('#quiz_instructions2 div#answer2').html(opts.itemArray[opts.itemNum].answer2)
+		$('#quiz_instructions2')
+			.find('#answer1,#answer2').click(function()
+		{
+				$('#example_1,#example_3', window.frames[0].document).hide();
+				$('#example_2', window.frames[0].document).show();
+				clearTimeout($.fn.quizbox._t);
+				$('.timer_bar').stop(); //.css('width', '100%');
+
+				// hook up the rest of the buttons
+				$('#quiz_title').find('a').click(function() { $.fn.quizbox.submit_answer(this); });
+			});
+
+		 var timerCb = function()
+		 {
+			$('.timer_bar').css('width', '100%');
+			$('#example_1,#example_2', window.frames[0].document).hide();
+			$('#example_3', window.frames[0].document).show();
+			startTimer(timerCb);
+		 };
+		 startTimer(timerCb);
 	 }else if (opts.itemArray[opts.itemNum].item_type == "score") {
 		 $('#quiz_title').show();
 		 $('#quiz_title div.buttons').hide();
@@ -646,11 +678,11 @@ $.fn.quizbox = function(settings) {
      
      
 		 /* submit answers and proceed to next question */
-		 $('#quiz_title').find('a').click(function() {
+		 $('#quiz_title').find('#take_quiz').click(function() {
 				 submit_answer(this);
 		});
 
-		 function submit_answer(answer){
+		 var submit_answer = $.fn.quizbox.submit_answer = function(answer){
 			 console.log('clicked on link with id:', answer.id);
 
 			 if (answer.id == "#skip") {
