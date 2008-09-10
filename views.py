@@ -199,7 +199,7 @@ class ViewAd(webapp.RequestHandler):
 
     
     
-    quiz_item_count = 6
+    quiz_item_count = 10
 
     quiz_items = random.sample(all_quiz_items,
                               quiz_item_count)

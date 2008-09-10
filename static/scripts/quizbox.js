@@ -339,10 +339,11 @@ $.fn.quizbox = function(settings) {
 				width:	0
 			},
 			{
-				duration:	8000,
+				duration:	12000,
 				easing:	'linear',
 				complete:	(function()
-				{
+				{					
+					
 					if(!cb)
 						return function()
 						{
@@ -365,9 +366,7 @@ $.fn.quizbox = function(settings) {
 		 $('#quiz_title').show();
 		 $('#quiz_title div.buttons').hide(); 
 		 $('#quiz_title div#quiz_answers').show();           
-		 $('#quiz_title div#quiz_intro').hide();  
-		 $('#quiz_title div#quiz_instructions').hide();
-		 $('#quiz_title div#quiz_instructions2').hide(); 
+
 
 		 /* TODO change to toggle */
 		 $('#quiz_answers div#answer1').empty();     
@@ -406,8 +405,8 @@ $.fn.quizbox = function(settings) {
 			}
 		});
 	 }else if (opts.itemArray[opts.itemNum].item_type == "instructions2") {
-		$('#example_1', window.frames[0].document).show();
-		$('#example_2,#example_3', window.frames[0].document).hide();
+		//$('#example_1', window.frames[0].document).show();
+		$('#example_2', window.frames[0].document).hide();
 		$('#quiz_title').show();
 		$('#quiz_title div.buttons').hide();
 		$('#quiz_title div#quiz_instructions2').show();  
@@ -423,15 +422,19 @@ $.fn.quizbox = function(settings) {
 				 $('.timer_bar').stop();
 
 				// hook up the rest of the buttons
-				$('#quiz_title').find('a').click(function() { $.fn.quizbox.submit_answer(this); });
+				$('#quiz_title').find('#skip').click(function() { $.fn.quizbox.submit_answer(this); });
 			});
 
+		 
 		 var timerCb = function()
 		 {
-			$('.timer_bar').css('width', '100%');
-			$('#example_1,#example_2', window.frames[0].document).hide('slow');
+			$('.timer_bar').css('width', '100%');						
+			$('#example_1', window.frames[0].document).hide('slow');
 			$('#example_3', window.frames[0].document).show('slow');
+			
+			
 			startTimer(timerCb);
+			
 		 };
 		 startTimer(timerCb);
 		 
