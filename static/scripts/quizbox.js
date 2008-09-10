@@ -367,7 +367,6 @@ $.fn.quizbox = function(settings) {
 		 $('#quiz_title div.buttons').hide(); 
 		 $('#quiz_title div#quiz_answers').show();           
 
-
 		 /* TODO change to toggle */
 		 $('#quiz_answers div#answer1').empty();     
 		 $('#quiz_answers div#answer2').empty();
@@ -377,6 +376,10 @@ $.fn.quizbox = function(settings) {
 		 $('#quiz_answers div#answer3').html(opts.itemArray[opts.itemNum].answer3);
 		 $('#quiz_answers div.arrow').html('<img src="/static/stylesheets/img/pinkarrow.png"/>');
 		 startTimer();
+		 				$('div#quiz_answers').find('a').click(function() {
+					$.fn.quizbox.submit_answer(this);
+				});
+			
 	 }else if (opts.itemArray[opts.itemNum].item_type == "intro") {
 		 /* hide answers and show hidden intro choices */
 		 $('#quiz_title').show();
@@ -418,7 +421,7 @@ $.fn.quizbox = function(settings) {
 				$('#example_1,#example_3', window.frames[0].document).hide('slow');
 				$('#example_2', window.frames[0].document).show('slow');
 				clearTimeout($.fn.quizbox._t);
-				 $('.timer_bar').css('width', '100%');
+				$('.timer_bar').css('width', '100%');
 				 $('.timer_bar').stop();
 
 				// hook up the rest of the buttons
@@ -429,10 +432,8 @@ $.fn.quizbox = function(settings) {
 		 var timerCb = function()
 		 {
 			$('.timer_bar').css('width', '100%');						
-			$('#example_1', window.frames[0].document).hide('slow');
-			$('#example_3', window.frames[0].document).show('slow');
-			
-			
+			$('#example_1,#example_2', window.frames[0].document).hide();
+			$('#example_3', window.frames[0].document).show();
 			startTimer(timerCb);
 			
 		 };
@@ -442,6 +443,9 @@ $.fn.quizbox = function(settings) {
 	     $('#quiz_title').show();
 	     $('#quiz_title div.buttons').hide();
 	     $('#quiz_title div#quiz_begin_quiz').show();
+        $('#quiz_begin_quiz').find('#startquiz').click(function() {
+					$.fn.quizbox.submit_answer(this);
+				});
 	     	 
 	 }else if (opts.itemArray[opts.itemNum].item_type == "score") {
 		 $('#quiz_title').show();
@@ -588,7 +592,7 @@ $.fn.quizbox = function(settings) {
 			 $('<a id="skip" class="answer" href="#"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_pink_left"></td><td id="quiz_pink_main"><div class="arrow"><img src="/static/stylesheets/img/pinkarrow.png" /></div><div class="skipitem" id="skiptext">Skip</div></td><td id="quiz_pink_right"></td></tr></table></a>').appendTo('#quiz_instructions2');
 
             $('<div id="quiz_begin_quiz" class="buttons" style=" margin-top:7px"></div>').appendTo('#quiz_title');
-             $('<a id="skip" class="answer" href="#" style="margin-top:-33px; margin-left: 95px"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="skipitem" id="startquiz">Start Quiz</div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_begin_quiz');
+             $('<a id="startquiz" class="answer" href="#" style="margin-top:-33px; margin-left: 95px"><table cellspacing="0" cellpadding="0" border="0" ><tr><td id="quiz_purple_left"></td><td id="quiz_purple_main"><div class="skipitem" id="startquiz">Start Quiz</div></td><td id="quiz_purple_right"></td></tr></table></a>').appendTo('#quiz_begin_quiz');
 
 
 

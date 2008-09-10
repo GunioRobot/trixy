@@ -59,12 +59,9 @@ var quizitemList = [
 {url: "/intro/?page=instructions", item_type:"instructions", answer1: "dog ate", answer2: "web made"},
 {url: "/intro/?page=instructions2", item_type:"instructions2", answer1: "compilers", answer2: "interpreters"},
 {url: "/intro/?page=begin_quiz", item_type:"begin_quiz"},
-
 {% for quiz_item in quiz_items %}
 {{ quiz_item }}
 {% endfor %} 
-/**/
-
 {url: "/viewscore/", item_type:"score" }
 
 
