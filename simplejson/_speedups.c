@@ -201,7 +201,7 @@ raise_errmsg(char *msg, PyObject *s, Py_ssize_t end)
         if (errmsg_fn == NULL) return;
         Py_XDECREF(decoder);
     }
-#if PY_VERSION_HEX < 0x02050000 
+#if PY_VERSION_HEX < 0x02050000
     pymsg = PyObject_CallFunction(errmsg_fn, "(zOi)", msg, s, end);
 #else
     pymsg = PyObject_CallFunction(errmsg_fn, "(zOn)", msg, s, end);
@@ -401,7 +401,7 @@ scanstring_str(PyObject *pystr, Py_ssize_t end, char *encoding, int strict)
     }
     Py_DECREF(chunks);
     chunks = NULL;
-#if PY_VERSION_HEX < 0x02050000 
+#if PY_VERSION_HEX < 0x02050000
     return Py_BuildValue("(Ni)", rval, end);
 #else
     return Py_BuildValue("(Nn)", rval, end);
@@ -561,7 +561,7 @@ scanstring_unicode(PyObject *pystr, Py_ssize_t end, int strict)
     }
     Py_DECREF(chunks);
     chunks = NULL;
-#if PY_VERSION_HEX < 0x02050000 
+#if PY_VERSION_HEX < 0x02050000
     return Py_BuildValue("(Ni)", rval, end);
 #else
     return Py_BuildValue("(Nn)", rval, end);
@@ -584,7 +584,7 @@ py_scanstring(PyObject* self UNUSED, PyObject *args)
     Py_ssize_t end;
     char *encoding = NULL;
     int strict = 0;
-#if PY_VERSION_HEX < 0x02050000 
+#if PY_VERSION_HEX < 0x02050000
     if (!PyArg_ParseTuple(args, "Oi|zi:scanstring", &pystr, &end, &encoding, &strict)) {
 #else
     if (!PyArg_ParseTuple(args, "On|zi:scanstring", &pystr, &end, &encoding, &strict)) {

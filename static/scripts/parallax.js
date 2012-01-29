@@ -30,7 +30,7 @@ function pxToInt(n) {
 function stripFiletype(ref) {
   var x=ref.replace('.html', '');
   x=x.replace('#', '');
-  return x; 
+  return x;
 }
 
 function initOrigin(l) {
@@ -46,7 +46,7 @@ function initOrigin(l) {
 function centreLayers(layer, viewport) {
 // A cheap hack!
 	for (var i=0; i<layer.length; i++) {
-  
+
 		// Position layers based on mouse position
 		if (layer[i].xparallax) layer[i].element.css("left", layer[i].xoffset - (0.5*viewport.width) * layer[i].xdynamic);
 		if (layer[i].yparallax) layer[i].element.css("top", layer[i].yoffset - (0.5*viewport.height) * layer[i].ydynamic);
@@ -71,14 +71,14 @@ function setFrameTimer(x, y, mouseport, layer) {
 
 function mouseResponse(mouse, mouseport, layer) {
 
-	if (mouse.pageX>=mouseport.left && mouse.pageX<=mouseport.width+mouseport.left && 
+	if (mouse.pageX>=mouseport.left && mouse.pageX<=mouseport.width+mouseport.left &&
   		mouse.pageY>=mouseport.top && mouse.pageY<=mouseport.height+mouseport.top) {
-  	
+
   	// Store mouse co-ordinates
   	// This causes problems when there are multiple jParallax on a page, because xmouse/ymouse is global.  Fix.
   	xmouse = mouse.pageX;
   	ymouse = mouse.pageY;
-  	
+
   	// Start timer
   	if (!frameTimer) {
   		positionLayers(mouseport, layer);
@@ -92,23 +92,23 @@ function mouseResponse(mouse, mouseport, layer) {
 
 
 function positionLayers(mouseport, layer) {
-  
-  // console.log('Layers positioned.');	
+
+  // console.log('Layers positioned.');
 	// Set where the layer SHOULD be and store in target
 	for (var i=0; i<layer.length; i++) {
 	  layer[i].xtarget = layer[i].xoffset - (xmouse-mouseport.left) * layer[i].xdynamic;
 	  layer[i].ytarget = layer[i].yoffset - (ymouse-mouseport.top) * layer[i].ydynamic;
 	}
-	
+
 	// Set where the layer is going to be
   if (!mouseport.inside) {
     for (var i=0; i<layer.length; i++) {
     	layer[i].x = layer[i].xtarget+(layer[i].x-layer[i].xtarget)*mouseport.softfactor;
-    	layer[i].y = layer[i].ytarget+(layer[i].y-layer[i].ytarget)*mouseport.softfactor;		
+    	layer[i].y = layer[i].ytarget+(layer[i].y-layer[i].ytarget)*mouseport.softfactor;
     }
-    
+
     var difference = Math.ceil(layer[layer.length-1].x-layer[layer.length-1].xtarget);
-    
+
     // If the layer is inside the softlimit set inside to true
     if (difference < mouseport.softlimit && difference > mouseport.softlimit*-1) {
     	mouseport.inside=true;
@@ -117,7 +117,7 @@ function positionLayers(mouseport, layer) {
     	// console.log(difference+' '+mouseport.inside)
     };
   }
-  
+
   // Set where the layer is if inside softlimit
   else {
     for (var i=0; i<layer.length; i++) {
@@ -125,13 +125,13 @@ function positionLayers(mouseport, layer) {
     	layer[i].y = layer[i].ytarget;
     }
   }
-  
+
 	// Position layers
-	for (var i=0; i<layer.length; i++) {	    
+	for (var i=0; i<layer.length; i++) {
 	  if (layer[i].xparallax) layer[i].element.css("left", layer[i].x);
 	  if (layer[i].yparallax) layer[i].element.css("top", layer[i].y);
 	}
-	
+
 	frameTimer = false;
 }
 
@@ -153,7 +153,7 @@ function debugParallax() {
     "\n  yoffset:  "+layer[i+1].yoffset+"px"+
     "\n  xorigin:  "+layer[i+1].xorigin+
     "\n  yorigin:  "+layer[i+1].yorigin;
-    
+
     for (var n=0; n<layer[i+1].canvas.children().length; n++) {
       debugString = debugString +
         "\nChild "+n+
@@ -168,7 +168,7 @@ function debugParallax() {
 // PLUGIN DEFINITION ••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
 
 jQuery.fn.jparallax = function(options) {
-	
+
 	// Extend defaults with options.
 	var settings = {
 			viewport:			jQuery.extend({}, jQuery.fn.jparallax.settings.viewport, options.viewport),
@@ -176,27 +176,27 @@ jQuery.fn.jparallax = function(options) {
 			layer:				jQuery.extend({}, jQuery.fn.jparallax.settings.layer, options.layer),
 			anim:					jQuery.extend({}, jQuery.fn.jparallax.settings.anim, options.anim)
 	};
-	
+
 	// Populate layer array with settings
 	var layersettings = [];
-	
+
 	for(var a=1; a<arguments.length; a++) {
   	layersettings.push(jQuery.extend({}, settings.layer, arguments[a]))
   }
-	
+
 	// Iterate matched elements
 	return this.each(function() {
-		
+
 		// THE ACTION •••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••
-		
+
 		var element = jQuery(this);
-		
+
 		var viewport	=	jQuery.extend({}, {element: element}, settings.viewport);
 		var mouseport = jQuery.extend({}, {element: viewport.element}, settings.mouseport);
 		var layer			= [];
-		
+
 		// port dimensions
-		jQuery.extend(viewport, {		
+		jQuery.extend(viewport, {
 			width: 		viewport.element.width(),
 			height: 	viewport.element.height()
 		});
@@ -206,10 +206,10 @@ jQuery.fn.jparallax = function(options) {
 			top:			mouseport.element.offset().top,
 			left:			mouseport.element.offset().left
 		});
-		
+
 		// Create layers
 		element.children().css('position', 'absolute');
-		
+
 		for (var i=0; i<element.children().length; i++) {
 
 			// Create layer from settings if it doesn't exist
@@ -225,14 +225,14 @@ jQuery.fn.jparallax = function(options) {
 				x:				0,
 				y:				0
 			}, layer[i]);
-			
-			jQuery.extend(layer[i], {	
+
+			jQuery.extend(layer[i], {
 				xoffset: 	(viewport.width - layer[i].width + layer[i].xtravel) * layer[i].xorigin,
 				yoffset:	(viewport.height - layer[i].height + layer[i].ytravel) * layer[i].yorigin,
 				xdynamic:	layer[i].xtravel / viewport.width,
 				ydynamic:	layer[i].ytravel / viewport.height
 			});
-			
+
 	    // Layer content: get positions, dimensions and calculate element offsets for centering children of layers
 	    for (var n=0; n<layer[i].element.children().length; n++) {
 
@@ -249,13 +249,13 @@ jQuery.fn.jparallax = function(options) {
 					xoffset:	(viewport.width/2)-(layer[i].content[n].left+(layer[i].content[n].width/2)),
 					yoffset:	(viewport.height/2)-(layer[i].content[n].top+(layer[i].content[n].height/2))
 				});
-				
+
 				// Perhaps anchor should be done this way:
 	      //if(!layer[i].content[n].anchor && layer[i].content[n].element.children('a').attr('name'))
 	      //                                  layer[i].content[n]['anchor']         = layer[i].content[n].element.children('a').attr('name');
 
 	    }
-	  	  
+
 		}
 
 		centreLayers(layer, viewport);
@@ -263,10 +263,10 @@ jQuery.fn.jparallax = function(options) {
 		jQuery().mousemove(function(mouse) {
 
 			mouseResponse(mouse, mouseport, layer);
-		
+
 		});
-		
-		
+
+
 	});
 
 };
@@ -307,13 +307,13 @@ jQuery.fn.jparallax.triggerResponse = function(ref) {
     }
     if (gotcha) break;
   }
-  
+
   // alert('Layer '+i+', item '+n);
-  
+
   for (l=1; l<layer.length; l++) {
     if (l!=i) layer[l].canvas.animate({left: layer[0].width}, animDuration );  //top: -1*layer[l].height  for upward motion.
   }
-  
+
   layer[i].canvas.animate({top: layer[i].content[n].topOffset, left: layer[i].content[n].leftOffset}, animDuration );
 
 }
@@ -321,7 +321,7 @@ jQuery.fn.jparallax.triggerResponse = function(ref) {
 jQuery.fn.jparallax.timerResponse = function(ref) {
   var wait;
   if (content[ref].pause) {wait=content[ref].pause} else {wait=pause};
-  
+
   // Increment 'ref'
   //if ((ref+1)==(jQuery('canvas *').length)) {ref=0}
   //else {ref=ref+1};
@@ -332,7 +332,7 @@ jQuery.fn.jparallax.timerResponse = function(ref) {
     ref=Math.ceil(Math.random()*layer[1].content.length)-1;
   }
 
-  triggerResponse(ref);  
+  triggerResponse(ref);
   timer=setTimeout("timerResponse("+ref+")", wait)
 }
 
@@ -345,11 +345,11 @@ initOrigin(jQuery.fn.jparallax.settings.layer);
 jQuery(function() {
 
 //	set default easing
-//	jQuery.easing.def = "easeOutQuart";		
+//	jQuery.easing.def = "easeOutQuart";
 
 //	jQuery(window).resize(function() { });
-	
-  
+
+
 
 });
 

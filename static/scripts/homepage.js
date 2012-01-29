@@ -2,13 +2,13 @@ jQuery.fn.extend({
   preserveDefaultText: function(defaultValue, replaceValue) {
 	$(this).focus(function(){
 		if(typeof(replaceValue) == 'undefined')
-			replaceValue = '';	
+			replaceValue = '';
 		if($(this).val() == defaultValue)
 			$(this).val(replaceValue);
 	});
-	$(this).blur(function(){	  
+	$(this).blur(function(){
 		if(typeof(replaceValue) == 'undefined')
-			replaceValue = '';	
+			replaceValue = '';
 		if($(this).val() == replaceValue)
 			$(this).val(defaultValue);
 	});
@@ -17,8 +17,8 @@ jQuery.fn.extend({
 });
 
 $(document).ready(function() {
-	
-	
+
+
 	var viewWidth = $('#viewport').width();
 	var viewHeight = $('#viewport').height();
 	$('#viewport .layer.near').css({width: (viewWidth * 2.2), height: (viewHeight*1.3)});
@@ -27,18 +27,18 @@ $(document).ready(function() {
 	jQuery('#viewport').jparallax({});
 	$('#viewport').css({overflow: "hidden"});
 	$('#flyer').animate({left: "100%"},50000);
-	
+
 	$('form#signup #email').preserveDefaultText('early@bird.com');
-	
-	// hover and focus fx				   
+
+	// hover and focus fx
 	$('input').focus(function(){
 		$(this).addClass('focus');
 	}).blur(function(){
 		$(this).removeClass('focus');
 	});
 	$('#signup input[type=button]').hover(function() {
-		$(this).addClass('hover');			   
-	},function(){ 
+		$(this).addClass('hover');
+	},function(){
 		$(this).removeClass('hover');
 	});
 	// button click behavior
@@ -48,7 +48,7 @@ $(document).ready(function() {
 			$('#success').show('fast');
 			$('#signup input[type=button]').hide();
 			//$('#signup input[type=button]').addClass('disable');
-		});			   
+		});
 	}).focus(function(){
 		// prevents crawling ants
 		$(this).blur();
@@ -57,7 +57,7 @@ $(document).ready(function() {
 	}).mouseup(function(){
 		$(this).removeClass('down');
 	});
-	
+
 });
 
 
@@ -93,7 +93,7 @@ function Request(function_name, opt_argv) {
 	}
 	query += '&time=' + new Date().getTime(); // IE cache workaround
 
-	// Create an XMLHttpRequest 'GET' request w/ an optional callback handler 
+	// Create an XMLHttpRequest 'GET' request w/ an optional callback handler
 	var req = new XMLHttpRequest();
 	req.open('GET', '/rpc?' + query, async);
 
@@ -115,9 +115,9 @@ function Request(function_name, opt_argv) {
 	req.send(null);
 }
 
-// Adds a stub function that will pass the arguments to the AJAX call 
+// Adds a stub function that will pass the arguments to the AJAX call
 function InstallFunction(obj, functionName) {
-	obj[functionName] = function() { 
+	obj[functionName] = function() {
 		Request(functionName, arguments);
 	}
 }

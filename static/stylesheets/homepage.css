@@ -1,15 +1,15 @@
 /*       Global Resets         */
 
 html,body,div,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,form,p,blockquote,fieldset,input {
-	margin: 0; 
-	padding: 0; 
+	margin: 0;
+	padding: 0;
 }
-fieldset,homepage { 
-	border: none; 
+fieldset,homepage {
+	border: none;
 }
-table { 
-	border-collapse: collapse; 
-	border-spacing: 0; 
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
 :focus {
